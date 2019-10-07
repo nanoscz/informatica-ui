@@ -54,6 +54,6 @@ git clone https://gitlab.dev.migapp.site/cps-fisico/informatica-ui.git
 
 **Referencias**
 
-[http://www.7sabores.com/blog/git-comandos-basicos](http://www.7sabores.com/blog/git-comandos-basicos)
-[https://www.hostinger.es/tutoriales/comandos-de-git](https://www.hostinger.es/tutoriales/comandos-de-git)
-[https://www.diegocmartin.com/tutorial-git/](https://www.diegocmartin.com/tutorial-git/)
+* [http://www.7sabores.com/blog/git-comandos-basicos](http://www.7sabores.com/blog/git-comandos-basicos)
+* [https://www.hostinger.es/tutoriales/comandos-de-git](https://www.hostinger.es/tutoriales/comandos-de-git)
+* [https://www.diegocmartin.com/tutorial-git/](https://www.diegocmartin.com/tutorial-git/)
