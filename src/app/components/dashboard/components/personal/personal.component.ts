@@ -9,10 +9,12 @@ import { PersonalService } from '../../services/personal.service';
 export class PersonalComponent implements OnInit {
   public search = '';
   public personals = []
+  public loading = true
   constructor(private personalService: PersonalService) { }
 
   async ngOnInit() {
     this.personals = await this.personalService.findAll()
+    this.loading = false
   }
 
   editar(id: number){
