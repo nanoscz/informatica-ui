@@ -19,7 +19,7 @@ const routes: Routes = [
         path: 'personal', component: PersonalComponent
       },
       { 
-        path: '', redirectTo: '/dashboard/solicitud', pathMatch: 'full'
+        path: '', redirectTo: '/dashboard/personal', pathMatch: 'full'
       },
     ]
   }
