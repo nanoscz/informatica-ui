@@ -1,0 +1,158 @@
+.page-content {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    padding: 0.5em;
+    color: rgb(95, 99, 104);
+    border-bottom: 1px solid #e5e5e5;
+  }
+}
+
+.name-site, .menu-left {
+  display: flex;
+  align-items: center;
+  color: rgb(95, 99, 104);
+}
+
+svg {
+  fill: currentColor;
+}
+
+.logo {
+  height: 30px;
+}
+
+.menu-left {
+  .btn-menu {
+    margin: 0;
+  }
+}
+
+.btn-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  margin: 0 4px;
+  &:hover {
+    cursor: pointer;
+    background: #eee;
+    border-radius: 50%;
+  }
+  img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+}
+
+.main-content {
+  background-color: #eee;
+  flex: 1;
+  display: flex;
+  .no-menu {
+    margin-left: -16rem;
+  }
+}
+
+.sidebar {
+  transition: margin-left .3s ease;
+  flex: 0 0 16rem;
+  background-color: #fff;
+  .write {
+    display: flex;
+    height: 48px;
+    margin: 16px 0;
+    padding: 0 0 0 8px;
+  }
+}
+
+.content {
+  flex: 1;
+  padding: 1rem;
+}
+
+
+.hidden-menu {
+  transform: translateX(-250px);
+  transition: all 0.3s;
+}
+
+.btn-write {
+  display: flex;
+  align-items: center;
+  padding: 1px;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 
+              0 1px 3px 1px rgba(60,64,67,0.149);
+  -webkit-font-smoothing: antialiased;
+  border-radius: 24px;
+  padding: 0 24px 0 12px;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 
+                0 2px 6px 3px rgba(60,64,67,0.149);
+  }
+  span {
+    padding-left: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color:#3c4043;
+  }
+}
+
+.lateral-menu {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-right: 1.5rem;
+    cursor: pointer;
+  }
+  li {
+    padding-left: 1rem;
+    &:hover {
+      background-color: #eee;
+      border-radius: 0 15px 15px 0;
+    }
+  }
+  a {
+    color: rgb(95, 99, 104);
+    font-weight: 500;
+    font-size: .9rem;
+    text-decoration: none;
+    padding:0.5rem;
+    display: flex;
+    span:nth-child(1) {
+      width: 1rem;
+    }
+    span:nth-child(2) {
+      margin-left: .7rem;
+      flex: 1;
+    }
+  }
+  .expand {
+    width: 100%;
+    .submenu {
+      padding: 0;
+      display: none;
+      a {
+        padding-left: 1.5rem;
+      }
+    }
+    .active {
+      + .submenu {
+        display: block;
+      }
+    }
+  }
+}
+
+.menu-active {
+  color: #d93025 !important;
+}
