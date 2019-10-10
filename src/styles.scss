@@ -1,3 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'variables';
+@import 'mixins';
+@import 'custom';
+
+html, body { height: 100%; }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
@@ -12,7 +20,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$informatica-primary: mat-palette($mat-indigo);
+$informatica-primary: mat-palette($mat-teal);
 $informatica-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -25,10 +33,3 @@ $informatica-theme: mat-light-theme($informatica-primary, $informatica-accent, $
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($informatica-theme);
-
-/* You can add global styles to this file, and also import other style files */
-@import 'variables';
-@import 'mixins';
-@import 'custom';
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
