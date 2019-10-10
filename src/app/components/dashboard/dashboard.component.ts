@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +10,11 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild('sidebar', { static: false }) sidebar: ElementRef;
   @ViewChild('main', { static: false }) main: ElementRef;
-  title = 'cps-panel';
+  title = 'Informatica';
+  text = '';
   menus: any;
   classSidebar: any;
-  constructor() {
+  constructor(private router: Router) {
     this.menus = [
       {
         title: 'Hoja de rutas',
@@ -33,9 +35,19 @@ export class DashboardComponent implements OnInit {
         links: 'personal'
       }
     ]
+    this.router.events.subscribe((event:any) => {
+      if (event instanceof NavigationEnd ) {
+        const transform = event.url.split('/')
+        this.text = transform[transform.length - 1]
+      }
+    });
   }
 
   ngOnInit() {
+  }
+
+  register(component: string) {
+    console.log(component)
   }
 
   ngAfterViewInit() {

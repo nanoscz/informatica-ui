@@ -6,7 +6,7 @@
           mat-icon-button aria-label="Example icon-button with a heart icon">
           <fa name="bars"></fa>
         </button>
-        <span>Informatica</span>
+        <span>{{ title }}</span>
         <span class="example-spacer"></span>
         <button class="example-icon" mat-icon-button>
           <fa name="bars"></fa>
@@ -17,9 +17,9 @@
   <main #main class="main-content">
     <aside #sidebar class="sidebar">
       <div class="write">
-        <a class="btn-write" (click)="toMessage()">
+        <a class="btn-write" (click)="register(text)">
           <img [src]="'/assets/btn-plus.png'" alt="">
-          <span>Solicitud</span>
+          <span>{{ text | titlecase }}</span>
         </a>
       </div>
       <nav class="lateral-menu">
