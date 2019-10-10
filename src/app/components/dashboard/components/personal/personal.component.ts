@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PersonalService } from '../../services/personal.service';
 
 @Component({
   selector: 'app-personal',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./personal.component.scss']
 })
 export class PersonalComponent implements OnInit {
+  public search = '';
+  public personals = []
+  constructor(private personalService: PersonalService) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  async ngOnInit() {
+    this.personals = await this.personalService.findAll()
   }
 
+  editar(id: number){
+    console.log(id)
+  }
+
+  eliminar(id: number){
+    console.log(id)
+  }
 }

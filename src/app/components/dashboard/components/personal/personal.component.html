@@ -1,1 +1,45 @@
-<p>personal works!</p>
+<mat-card>
+  <!-- <mat-card-title>
+    Personals
+  </mat-card-title> -->
+  <mat-card-content>
+    <div class="content-search">
+      <h3 mat-subheader>Personals</h3>
+      <!-- <div class="card-header">
+          <div class="search">
+            <mat-form-field class="example-form-field">
+              <input matInput type="text" placeholder="Search..." [(ngModel)]="search">
+              <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
+                <fa name="times"></fa>
+              </button>
+            </mat-form-field>
+          </div>
+      </div> -->
+      <mat-list>
+        <mat-list-item *ngFor="let personal of personals">
+          <div class="image">
+            <img [src]="'assets/user.png'" alt="">
+          </div>
+          <div class="text">
+            <h4 mat-line>
+              {{personal.nom | titlecase }} {{ personal.app | titlecase}} {{ personal.apm | titlecase}}
+            </h4>
+            <!-- <p mat-line> {{ personal.servicio }}</p> -->
+            <p mat-line> Sistemas</p>
+          </div>
+          <div class="action">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <fa name="ellipsis-h"></fa>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="editar(personal.id)">Editar</button>
+              <button mat-menu-item (click)="eliminar(personal.id)">Eliminar</button>
+            </mat-menu>
+          </div>
+        </mat-list-item>
+        <!-- <mat-divider></mat-divider> -->
+      </mat-list>
+
+    </div>
+  </mat-card-content>
+</mat-card>
