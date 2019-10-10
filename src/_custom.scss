@@ -1,0 +1,18 @@
+ 
+html {
+  @include box-sizing(border-box);
+  height: 100%;
+}
+*,
+*:after,
+*:before {
+@include box-sizing(inherit);
+}
+
+body {
+  font-family: $font_main;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
