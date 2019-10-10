@@ -10,7 +10,7 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ExpandDirective } from './directives/expand.directive';
-
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { ExpandDirective } from './directives/expand.directive';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MaterialModule
   ]
 })
 export class DashboardModule { }
