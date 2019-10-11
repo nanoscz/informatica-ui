@@ -5,8 +5,8 @@ import { Directive, HostBinding, HostListener } from '@angular/core';
 })
 export class ExpandDirective {
   @HostBinding('class.active') isOpen = false;
-  @HostListener('click', ['$event']) 
-  toggleOpen(e){
+  @HostListener('click', ['$event'])
+  toggleOpen(e) {
     this.isOpen = !this.isOpen;
     e.stopPropagation();
   }

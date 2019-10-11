@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { PersonalService } from '../../services/personal.service';
 
 @Component({
@@ -9,10 +9,10 @@ import { PersonalService } from '../../services/personal.service';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  public loading = false
+  public loading = false;
   public form: FormGroup;
-  public servicios = []
-  public txtSubmit = ''
+  public servicios = [];
+  public txtSubmit = '';
   constructor(
     private fb: FormBuilder,
     private personalService: PersonalService,
@@ -20,16 +20,16 @@ export class FormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.servicios = [
-      { id: 1, nombre: "sistemas", pref: 'ing' },
-      { id: 2, nombre: "redes y telecomunicaciones", pref: 'ing' },
-      { id: 3, nombre: "servicio tecnico", pref: 'tec' },
-      { id: 4, nombre: "archivo", pref: 'archivo' },
-      { id: 5, nombre: "secretaria", pref: 'sec'}, 
-    ]
+      { id: 1, nombre: 'sistemas', pref: 'ing' },
+      { id: 2, nombre: 'redes y telecomunicaciones', pref: 'ing' },
+      { id: 3, nombre: 'servicio tecnico', pref: 'tec' },
+      { id: 4, nombre: 'archivo', pref: 'archivo' },
+      { id: 5, nombre: 'secretaria', pref: 'sec'},
+    ];
   }
 
   ngOnInit() {
-    this.data.action === 'registrar'? this.txtSubmit = 'Guardar' : 'Modificar'
+    this.txtSubmit = this.data.action === 'registrar' ?  'Guardar' : 'Modificar';
     this.form = this.fb.group({
       nom: [this.data.personal.nom, [Validators.required]],
       app: [this.data.personal.app, [Validators.required]],
@@ -40,24 +40,24 @@ export class FormComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
-      const personal = Object.assign({}, this.form.value)
-      const servicio = this.servicios.filter(item => item.id === personal.servicio)
-      personal.pref = servicio[0].pref
-      personal.cargo = ''
+      const personal = Object.assign({}, this.form.value);
+      const servicio = this.servicios.filter(item => item.id === personal.servicio);
+      personal.pref = servicio[0].pref;
+      personal.cargo = '';
       this.personalService.register(personal)
       .then(data => {
-        this.loading = false
+        this.loading = false;
         this.dialogRef.close(data);
       })
-      .catch(this.handleError)
+      .catch(this.handleError);
     } else {
-      console.log("El formulario no es valido.")
+      console.log('El formulario no es valido.');
     }
-   
+
   }
-  
-  guardar(){
-    
+
+  guardar() {
+
   }
 
   handleError(err: any): Promise<any> {

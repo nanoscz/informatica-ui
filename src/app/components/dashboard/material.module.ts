@@ -23,7 +23,7 @@ const MODULES = [
   MatDialogModule,
   MatFormFieldModule,
   MatSelectModule
-]
+];
 
 @NgModule({
   imports: MODULES,

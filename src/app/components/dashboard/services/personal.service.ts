@@ -5,9 +5,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PersonalService {
-  public baseUrl = "http://localhost:3000/v1"
+  public baseUrl = 'http://localhost:3000/v1';
   constructor(private http: HttpClient) {
-    this.baseUrl = `${this.baseUrl}/personal`
+    this.baseUrl = `${this.baseUrl}/personal`;
   }
 
   findAll() {

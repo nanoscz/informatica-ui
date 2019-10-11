@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormComponent } from './shared/form/form.component';
@@ -9,7 +9,7 @@ import { ObserverService } from './services/observer.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
 
   @ViewChild('sidebar', { static: false }) sidebar: ElementRef;
   @ViewChild('main', { static: false }) main: ElementRef;
@@ -41,11 +41,11 @@ export class DashboardComponent implements OnInit {
         submenu: [],
         links: 'personal'
       }
-    ]
+    ];
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        const transform = event.url.split('/')
-        this.text = transform[transform.length - 1]
+        const transform = event.url.split('/');
+        this.text = transform[transform.length - 1];
       }
     });
   }
@@ -71,23 +71,23 @@ export class DashboardComponent implements OnInit {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.observerServicio.enviarDatos(result)
+      this.observerServicio.enviarDatos(result);
     });
   }
 
   ngAfterViewInit() {
-    this.classSidebar = this.sidebar.nativeElement['classList'];
+    this.classSidebar = this.sidebar.nativeElement.classList;
     const mainSize = this.main.nativeElement.offsetWidth;
     if (mainSize < 678) {
-      this.classSidebar.add('no-menu')
+      this.classSidebar.add('no-menu');
     }
   }
 
   showMenu() {
     if (Object.values(this.classSidebar).includes('no-menu')) {
-      this.classSidebar.remove('no-menu')
+      this.classSidebar.remove('no-menu');
     } else {
-      this.classSidebar.add('no-menu')
+      this.classSidebar.add('no-menu');
     }
   }
 }

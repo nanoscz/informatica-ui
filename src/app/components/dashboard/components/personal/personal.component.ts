@@ -10,31 +10,30 @@ import { ObserverService } from '../../services/observer.service';
 })
 export class PersonalComponent implements OnInit, OnDestroy {
   public search = '';
-  public personals = []
-  public loading = true
+  public personals = [];
+  public loading = true;
   public $subscription: Subscription;
   constructor(
     private observerServicio: ObserverService,
     private personalService: PersonalService
-    )
-    { }
+    ) { }
 
   async ngOnInit() {
     this.$subscription = this.observerServicio.$observador.subscribe(personal => {
-      this.personals.push(personal)
-    })
-    this.personals = await this.personalService.findAll()
-    this.loading = false
+      this.personals.push(personal);
+    });
+    this.personals = await this.personalService.findAll();
+    this.loading = false;
   }
 
   ngOnDestroy(): void {
   this.$subscription.unsubscribe();
   }
-  editar(id: number){
-    console.log(id)
+  editar(id: number) {
+    console.log(id);
   }
 
-  eliminar(id: number){
-    console.log(id)
+  eliminar(id: number) {
+    console.log(id);
   }
 }
