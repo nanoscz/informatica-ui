@@ -20,7 +20,7 @@
       </div>
       
       <mat-list *ngIf="!loading">
-        <mat-list-item *ngFor="let personal of personals">
+        <mat-list-item *ngFor="let personal of personals; let i = index">
           <div class="image">
             <img [src]="'assets/user.png'" alt="">
           </div>
@@ -37,7 +37,7 @@
             </button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item (click)="editar(personal.id)">Editar</button>
-              <button mat-menu-item (click)="eliminar(personal.id)">Eliminar</button>
+              <button mat-menu-item (click)="eliminar(personal.id, i)">Eliminar</button>
             </mat-menu>
           </div>
         </mat-list-item>

@@ -29,16 +29,17 @@ export class PersonalService {
   }
 
   update(id: number, personal: any) {
-    this.http.patch(`${this.baseUrl}/${id}`, personal)
+    return this.http.patch(`${this.baseUrl}/${id}`, personal)
       .toPromise()
       .catch(this.handleError);
   }
 
   delete(id: number) {
-    this.http.delete(`${this.baseUrl}/${id}`)
+    return this.http.delete(`${this.baseUrl}/${id}`)
       .toPromise()
       .catch(this.handleError);
   }
+
   handleError(err: any): Promise<any> {
     return Promise.reject(err.error);
   }

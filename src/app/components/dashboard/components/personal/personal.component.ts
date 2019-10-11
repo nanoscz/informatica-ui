@@ -29,11 +29,20 @@ export class PersonalComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   this.$subscription.unsubscribe();
   }
+
   editar(id: number) {
-    console.log(id);
+    
   }
 
-  eliminar(id: number) {
-    console.log(id);
+  eliminar(id: number, index: number) {
+    this.personalService.delete(id)
+    .then(()=> {
+      this.personals.splice(index, 1)
+    })
+    .catch(this.handleError)
+  }
+
+  handleError(err: any): Promise<any> {
+    return Promise.reject(err.error);
   }
 }
