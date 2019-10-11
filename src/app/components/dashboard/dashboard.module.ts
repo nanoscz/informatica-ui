@@ -11,6 +11,8 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ExpandDirective } from './directives/expand.directive';
 import { MaterialModule } from './material.module';
+import { FormComponent } from './shared/form/form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,16 @@ import { MaterialModule } from './material.module';
     SolicitudComponent,
     ReportesComponent,
     PersonalComponent,
-    ExpandDirective
+    ExpandDirective,
+    FormComponent,
   ],
+  entryComponents: [FormComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     AngularFontAwesomeModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }
