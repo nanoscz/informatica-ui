@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormComponent } from './shared/form/form.component';
 import { ObserverService } from './services/observer.service';
@@ -42,12 +42,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         links: 'personal'
       }
     ];
-    this.router.events.subscribe((event: any) => {
-      if (event instanceof NavigationEnd) {
-        const transform = event.url.split('/');
-        this.text = transform[transform.length - 1];
-      }
-    });
+    this.router.events.subscribe((event: ActivationEnd) => {
+        if (event instanceof ActivationEnd && event.snapshot.firstChild == null) {
+          this.text = event.snapshot.data.title
+        }
+      });
   }
 
   ngOnInit() {

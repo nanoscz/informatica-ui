@@ -10,13 +10,13 @@ const routes: Routes = [
     path: '', component: DashboardComponent,
     children: [
       {
-        path: 'solicitud', component: SolicitudComponent
+        path: 'solicitud', component: SolicitudComponent, data: { title: 'solicitud'}
       },
       {
-        path: 'reportes', component: ReportesComponent
+        path: 'reportes', component: ReportesComponent, data: { title: 'reportes'}
       },
       {
-        path: 'personal', component: PersonalComponent
+        path: 'personal', component: PersonalComponent, data: { title: 'personal'}
       },
       {
         path: '', redirectTo: '/dashboard/personal', pathMatch: 'full'
