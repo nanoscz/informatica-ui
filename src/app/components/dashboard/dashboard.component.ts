@@ -70,7 +70,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.observerServicio.enviarDatos(result);
+      if(result) {
+        this.observerServicio.enviarDatos(result);
+      }
     });
   }
 
