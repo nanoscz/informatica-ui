@@ -39,21 +39,21 @@ export class PersonalComponent implements OnInit, OnDestroy {
       data: {
         title: `Modificar Personal`,
         action: 'modificar',
-        personal: personal
+        personal
       },
       disableClose: true
     });
-    dialogRef.afterClosed().subscribe(personal => {
-      this.personals[index] = personal
+    dialogRef.afterClosed().subscribe(data => {
+      this.personals[index] = data;
     });
   }
 
   eliminar(id: number, index: number) {
     this.personalService.delete(id)
-    .then(()=> {
-      this.personals.splice(index, 1)
+    .then(() => {
+      this.personals.splice(index, 1);
     })
-    .catch(this.handleError)
+    .catch(this.handleError);
   }
 
   handleError(err: any): Promise<any> {

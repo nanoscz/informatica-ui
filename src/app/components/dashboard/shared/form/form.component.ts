@@ -46,19 +46,19 @@ export class FormComponent implements OnInit {
       personal.cargo = '';
       switch (this.data.action) {
         case 'registrar':
-            this.guardar(personal)
-          break;
+            this.guardar(personal);
+            break;
         case 'modificar':
-            this.modificar(personal)
-          break;  
+            this.modificar(personal);
+            break;
         default:
-          console.log("Fatal Error")
+          console.log('Fatal Error');
           break;
       }
     }
   }
 
-  modificar(personal:any) { 
+  modificar(personal: any) {
     this.personalService.update(personal, this.data.personal.id)
     .then(() => {
       this.loading = false;

@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     ];
     this.router.events.subscribe((event: ActivationEnd) => {
         if (event instanceof ActivationEnd && event.snapshot.firstChild == null) {
-          this.text = event.snapshot.data.title
+          this.text = event.snapshot.data.title;
         }
       });
   }
