@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormComponent } from './shared/form/form.component';
+import { ObserverService } from './services/observer.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,8 @@ export class DashboardComponent implements OnInit {
   classSidebar: any;
   constructor(
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private observerServicio: ObserverService,
   ) {
     this.menus = [
       {
@@ -52,7 +54,6 @@ export class DashboardComponent implements OnInit {
   }
 
   register(component: string) {
-    console.log(component)
     const dialogRef = this.dialog.open(FormComponent, {
       width: '400px',
       data: {
@@ -69,8 +70,8 @@ export class DashboardComponent implements OnInit {
       },
       disableClose: true
     });
-    dialogRef.afterClosed().subscribe(async result => {
-      console.log('The dialog was closed', result);
+    dialogRef.afterClosed().subscribe(result => {
+      this.observerServicio.enviarDatos(result)
     });
   }
 
