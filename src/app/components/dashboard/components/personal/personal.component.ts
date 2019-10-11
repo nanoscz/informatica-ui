@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PersonalService } from '../../services/personal.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ObserverService } from '../../services/observer.service';
+import { MatDialog } from '@angular/material';
+import { FormComponent } from '../../shared/form/form.component';
 
 @Component({
   selector: 'app-personal',
@@ -14,6 +16,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
   public loading = true;
   public $subscription: Subscription;
   constructor(
+    public dialog: MatDialog,
     private observerServicio: ObserverService,
     private personalService: PersonalService
     ) { }
@@ -30,8 +33,19 @@ export class PersonalComponent implements OnInit, OnDestroy {
   this.$subscription.unsubscribe();
   }
 
-  editar(id: number) {
-    
+  editar(personal: any, index: number) {
+    const dialogRef = this.dialog.open(FormComponent, {
+      width: '400px',
+      data: {
+        title: `Modificar Personal`,
+        action: 'modificar',
+        personal: personal
+      },
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(personal => {
+      this.personals[index] = personal
+    });
   }
 
   eliminar(id: number, index: number) {

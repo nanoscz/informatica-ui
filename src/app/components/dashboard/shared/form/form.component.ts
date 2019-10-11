@@ -44,20 +44,36 @@ export class FormComponent implements OnInit {
       const servicio = this.servicios.filter(item => item.id === personal.servicio);
       personal.pref = servicio[0].pref;
       personal.cargo = '';
-      this.personalService.register(personal)
-      .then(data => {
-        this.loading = false;
-        this.dialogRef.close(data);
-      })
-      .catch(this.handleError);
-    } else {
-      console.log('El formulario no es valido.');
+      switch (this.data.action) {
+        case 'registrar':
+            this.guardar(personal)
+          break;
+        case 'modificar':
+            this.modificar(personal)
+          break;  
+        default:
+          console.log("Fatal Error")
+          break;
+      }
     }
-
   }
 
-  guardar() {
+  modificar(personal:any) { 
+    this.personalService.update(personal, this.data.personal.id)
+    .then(() => {
+      this.loading = false;
+      this.dialogRef.close(personal);
+    })
+    .catch(this.handleError);
+  }
 
+  guardar(personal: any) {
+    this.personalService.register(personal)
+    .then(data => {
+      this.loading = false;
+      this.dialogRef.close(data);
+    })
+    .catch(this.handleError);
   }
 
   handleError(err: any): Promise<any> {

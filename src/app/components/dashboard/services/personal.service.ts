@@ -28,7 +28,7 @@ export class PersonalService {
       .catch(this.handleError);
   }
 
-  update(id: number, personal: any) {
+  update(personal: any, id: number) {
     return this.http.patch(`${this.baseUrl}/${id}`, personal)
       .toPromise()
       .catch(this.handleError);
