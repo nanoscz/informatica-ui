@@ -1,6 +1,6 @@
 <div class="example-container">
   <h3>{{ this.data.title }}</h3>
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form" (ngSubmit)="submit()" #f="ngForm">
     <mat-form-field>
       <input matInput placeholder="Nombre" formControlName="nom" required>
     </mat-form-field>

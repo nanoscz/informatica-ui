@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { Router, NavigationEnd, ActivationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormComponent } from './shared/form/form.component';
-import { ObserverService } from './services/observer.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,8 +18,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   classSidebar: any;
   constructor(
     public dialog: MatDialog,
-    private router: Router,
-    private observerServicio: ObserverService,
+    private router: Router
   ) {
     this.menus = [
       {
@@ -59,9 +57,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         title: `Registrar ${component}`,
         action: 'registrar',
         personal: {
-          nom: 'Fernando',
-          app: 'Castillo',
-          apm: 'Torrico',
+          nom: '',
+          app: '',
+          apm: '',
           servicio: 1,
           pref: '',
           cargo: ''
@@ -70,9 +68,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        this.observerServicio.enviarDatos(result);
-      }
+     console.log('Register:close');
     });
   }
 
