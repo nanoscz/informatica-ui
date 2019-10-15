@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,11 @@ export class PersonalService {
     this.baseUrl = `${this.baseUrl}/personal`;
   }
 
-  findAll() {
-    return this.http.get(this.baseUrl)
+  findAll(search: string, range: string) {
+    const params = new HttpParams()
+      .set('search', search)
+      .set('range', range)
+    return this.http.get(this.baseUrl, { params })
       .toPromise()
       .catch(this.handleError);
   }
