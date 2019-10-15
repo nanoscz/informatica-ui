@@ -11,6 +11,7 @@ import { FormComponent } from '../../shared/form/form.component';
   styleUrls: ['./personal.component.scss']
 })
 export class PersonalComponent implements OnInit, OnDestroy {
+  public title = 'Personals'
   public dataReceived: any = {
     personals: [],
     count: 0
