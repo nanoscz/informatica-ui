@@ -1,11 +1,8 @@
 <mat-card>
-  <!-- <mat-card-title>
-    Personals
-  </mat-card-title> -->
   <mat-card-content>
     <div class="content-search">
-      <h3 mat-subheader>Personals</h3>
-      <!-- <div class="card-header">
+      <div class="card-header">
+          <h3 mat-subheader>Personals</h3>
           <div class="search">
             <mat-form-field class="example-form-field">
               <input matInput type="text" placeholder="Search..." [(ngModel)]="search">
@@ -14,36 +11,38 @@
               </button>
             </mat-form-field>
           </div>
-      </div> -->
-      <div class="spinner" *ngIf="loading">
-          <mat-spinner [diameter]="40"></mat-spinner>
       </div>
-      
-      <mat-list *ngIf="!loading">
-        <mat-list-item *ngFor="let personal of personals; let i = index">
-          <div class="image">
-            <img [src]="'assets/user.png'" alt="">
-          </div>
-          <div class="text">
-            <h4 mat-line>
-              {{personal.nom | titlecase }} {{ personal.app | titlecase}} {{ personal.apm | titlecase}}
-            </h4>
-            <!-- <p mat-line> {{ personal.servicio }}</p> -->
-            <p mat-line> Sistemas</p>
-          </div>
-          <div class="action">
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-              <fa name="ellipsis-h"></fa>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="editar(personal, i)">Editar</button>
-              <button mat-menu-item (click)="eliminar(personal.id, i)">Eliminar</button>
-            </mat-menu>
-          </div>
-        </mat-list-item>
-        <!-- <mat-divider></mat-divider> -->
-      </mat-list>
+      <div class="content-list">
+        <div class="spinner" *ngIf="loading">
+          <mat-spinner [diameter]="40"></mat-spinner>
+        </div>
 
+        <mat-list *ngIf="!loading">
+          <mat-list-item *ngFor="let personal of personals; let i = index">
+            <div class="image">
+              <img [src]="'assets/user.png'" alt="">
+            </div>
+            <div class="text">
+              <h4 mat-line>
+                {{personal.nom | titlecase }} {{ personal.app | titlecase}} {{ personal.apm | titlecase}}
+              </h4>
+              <!-- <p mat-line> {{ personal.servicio }}</p> -->
+              <p mat-line> Sistemas</p>
+            </div>
+            <div class="action">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <fa name="ellipsis-h"></fa>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="editar(personal, i)">Editar</button>
+                <button mat-menu-item (click)="eliminar(personal.id, i)">Eliminar</button>
+              </mat-menu>
+            </div>
+          </mat-list-item>
+          <!-- <mat-divider></mat-divider> -->
+        </mat-list>
+
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

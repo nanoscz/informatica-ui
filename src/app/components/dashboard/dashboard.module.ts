@@ -12,7 +12,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ExpandDirective } from './directives/expand.directive';
 import { MaterialModule } from './material.module';
 import { FormComponent } from './shared/form/form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardRoutingModule,
     AngularFontAwesomeModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class DashboardModule { }
