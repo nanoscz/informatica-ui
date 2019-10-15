@@ -88,10 +88,11 @@ export class FormComponent implements OnInit {
       this.observerServicio.enviarDatos(data);
       this.myNgForm.resetForm();
     })
-    .catch(this.handleError);
+    .catch(this.handleError.bind(this));
   }
 
   handleError(err: any): Promise<any> {
+    this.loading = false;
     return Promise.reject(err.error);
   }
 }
