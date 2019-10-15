@@ -13,6 +13,7 @@ import { ExpandDirective } from './directives/expand.directive';
 import { MaterialModule } from './material.module';
 import { FormComponent } from './shared/form/form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SearchComponent } from './shared/search/search.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     PersonalComponent,
     ExpandDirective,
     FormComponent,
+    SearchComponent,
   ],
   entryComponents: [FormComponent],
   imports: [
