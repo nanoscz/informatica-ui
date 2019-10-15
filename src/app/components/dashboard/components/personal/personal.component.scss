@@ -2,18 +2,19 @@
   display: flex;
   h3{
     margin: 0;
+    small {
+      padding-left: 0.3rem;
+      font-weight: normal;
+    }
   }
 }
 
+.mat-card-content {
+  flex:1
+}
 .search {
   width: 100%;
-  display: flex;
   padding-right: 1rem;
-  justify-content: flex-end;
-}
-
-.example-form-field {
-  width: 300px;
 }
 
 .mat-list-item {
@@ -45,4 +46,13 @@
 .content-list {
   border-top: 1px solid #eee;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  .not-data {
+    display: flex; 
+    justify-content: center;
+  }
+}
+
+.btn-more {
+  display: block;
+  padding: 0.7rem 0;
 }
