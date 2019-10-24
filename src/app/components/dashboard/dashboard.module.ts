@@ -14,6 +14,7 @@ import { MaterialModule } from './material.module';
 import { FormComponent } from './shared/form/form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SearchComponent } from './shared/search/search.component';
+import { ServiciosPipe } from './pipes/servicios.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SearchComponent } from './shared/search/search.component';
     ExpandDirective,
     FormComponent,
     SearchComponent,
+    ServiciosPipe,
   ],
   entryComponents: [FormComponent],
   imports: [

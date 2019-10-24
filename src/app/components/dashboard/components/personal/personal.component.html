@@ -20,8 +20,7 @@
               <h4 mat-line>
                 {{ i + 1}} {{personal.nom | titlecase }} {{ personal.app | titlecase}} {{ personal.apm | titlecase}}
               </h4>
-              <!-- <p mat-line> {{ personal.servicio }}</p> -->
-              <p mat-line> Sistemas</p>
+              <p mat-line> {{ personal.servicio | servicios | titlecase }}</p>
             </div>
             <div class="action">
               <button mat-icon-button [matMenuTriggerFor]="menu">
