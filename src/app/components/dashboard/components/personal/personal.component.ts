@@ -83,7 +83,9 @@ export class PersonalComponent implements OnInit, OnDestroy {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(data => {
-      this.dataReceived.personals[index] = data;
+      if(data){
+        this.dataReceived.personals[index] = data;
+      }
     });
   }
 
