@@ -38,3 +38,8 @@ $informatica-theme: mat-light-theme($informatica-primary, $informatica-accent, $
   padding: 0;
   background-color: #fff;
 }
+
+.mat-list-item-content {
+  display: block;
+  width: 100% !important;
+}
