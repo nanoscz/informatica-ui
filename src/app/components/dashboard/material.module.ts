@@ -10,6 +10,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDividerModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const MODULES = [
   MatToolbarModule,
@@ -22,7 +26,11 @@ const MODULES = [
   MatProgressSpinnerModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTabsModule,
+  MatButtonToggleModule,
+  MatDividerModule,
+  MatTooltipModule
 ];
 
 @NgModule({
