@@ -1,0 +1,30 @@
+.mat-list-base {
+  padding: 0;
+}
+
+.mat-list-item {
+  display: flex;
+  justify-content: space-between;
+  .firt-text {
+    flex: 1;
+    font-weight: 500;
+  }
+  .seconds-text {
+    flex: 1 0 70%
+  }
+  .date-text {
+    font-size: 14px;
+    flex: 1
+  }
+  &:hover {
+    background-color: #eee;
+    .date-text {
+      div:nth-child(1) {
+        display: none;
+      }
+      div:nth-child(2) {
+        display: block !important;
+      }
+    }
+  }
+}

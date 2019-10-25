@@ -15,6 +15,7 @@ import { FormComponent } from './shared/form/form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SearchComponent } from './shared/search/search.component';
 import { ServiciosPipe } from './pipes/servicios.pipe';
+import { ListComponent } from './shared/list/list.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ServiciosPipe } from './pipes/servicios.pipe';
     FormComponent,
     SearchComponent,
     ServiciosPipe,
+    ListComponent,
   ],
   entryComponents: [FormComponent],
   imports: [
