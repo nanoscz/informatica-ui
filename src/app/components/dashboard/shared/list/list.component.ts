@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  public tabsIndex;
+  public tabsIndex: number;
   public dataReceived: Solicituds = {
     solicituds: [],
     count: 0
