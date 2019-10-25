@@ -11,6 +11,9 @@
         {{ solicitud.fecha | date }}
       </div>
       <div style="display: none;">
+        <a mat-icon-button matTooltipPosition="above" matTooltip="check" (click)="check(solicitud.id)">
+          <fa name="check"></fa>
+        </a>
         <a mat-icon-button matTooltipPosition="above" matTooltip="Modificar" (click)="modificar(solicitud.id)">
           <fa name="pencil"></fa>
         </a>

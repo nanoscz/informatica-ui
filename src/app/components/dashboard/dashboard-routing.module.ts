@@ -11,19 +11,21 @@ const routes: Routes = [
     path: '', component: DashboardComponent,
     children: [
       {
-        path: 'solicitud', component: SolicitudComponent, data: { title: 'solicitud'},
+        path: 'solicitud', component: SolicitudComponent, data: { title: 'solicitud' },
         children: [
-          { path: ':id', component: ListComponent},
+          {
+            path: ':id', component: ListComponent, data: { title: 'solicitud' }
+          },
           {
             path: '', redirectTo: '/dashboard/solicitud/1', pathMatch: 'full'
           },
         ]
       },
       {
-        path: 'reportes', component: ReportesComponent, data: { title: 'reportes'}
+        path: 'reportes', component: ReportesComponent, data: { title: 'reportes' }
       },
       {
-        path: 'personal', component: PersonalComponent, data: { title: 'personal'}
+        path: 'personal', component: PersonalComponent, data: { title: 'personal' }
       },
       {
         path: '', redirectTo: '/dashboard/solicitud', pathMatch: 'full'

@@ -34,6 +34,10 @@ export class ListComponent implements OnInit {
   ngOnInit() {
   }
   
+  check(id: number) {
+    console.log("modificar", id)
+  }
+
   modificar(id: number) {
     console.log("modificar", id)
   }
