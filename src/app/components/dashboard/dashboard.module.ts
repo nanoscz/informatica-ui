@@ -16,6 +16,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SearchComponent } from './shared/search/search.component';
 import { ServiciosPipe } from './pipes/servicios.pipe';
 import { ListComponent } from './shared/list/list.component';
+import { ZfillPipe } from './pipes/zfill.pipe';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ListComponent } from './shared/list/list.component';
     SearchComponent,
     ServiciosPipe,
     ListComponent,
+    ZfillPipe,
+    CapitalizePipe,
   ],
   entryComponents: [FormComponent],
   imports: [
