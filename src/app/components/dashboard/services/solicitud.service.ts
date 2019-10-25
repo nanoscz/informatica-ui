@@ -10,10 +10,11 @@ export class SolicitudService {
     this.baseUrl = `${this.baseUrl}/solicitud`;
   }
 
-  findAll(status: number) {
-    return this.http.get(`${this.baseUrl}/${status}/all`)
-      .toPromise()
-      .catch(this.handleError);
+  findAll(type: number, search: string = '', range: string = '0-50') {
+    const params = new HttpParams()
+      .set('search', search)
+      .set('range', range)
+    return this.http.get(`${this.baseUrl}/${type}/all`, { params })
   }
 
   findOne(id: number) {
