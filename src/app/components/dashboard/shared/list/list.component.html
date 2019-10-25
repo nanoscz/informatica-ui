@@ -1,10 +1,10 @@
 <mat-list>
   <mat-list-item *ngFor="let solicitud of dataReceived.solicituds">
     <div class="firt-text">
-      {{ solicitud.ruta }}
+      {{ solicitud.ruta | zfill }}
     </div>
     <div class="seconds-text">
-      {{ solicitud.referencia | lowercase }}
+      {{ solicitud.referencia | lowercase | capitalize }}
     </div>
     <div class="date-text">
       <div>
