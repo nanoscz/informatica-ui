@@ -1,1 +1,20 @@
-<p>solicitud works!</p>
+<mat-card>
+  <mat-card-content>
+    <div class="card-header">
+      <h3 mat-subheader> {{ title }}</h3>
+      <div class="search">
+        <app-search [size]="40" (evento)=buscar($event)></app-search>
+      </div>
+    </div>
+    <div class="content-list">
+      <nav mat-tab-nav-bar>
+        <a [ngClass]="{colorTabs: tab.isActive}" mat-tab-link *ngFor="let tab of tabs" [routerLink]="tab.id" 
+            routerLinkActive #rla="routerLinkActive" [active]="tab.isActive" (click)="irTab(tab)">
+          <fa class="icons" [name]="tab.icon"></fa>
+          {{tab.name}}
+        </a>
+      </nav>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-card-content>
+</mat-card>
