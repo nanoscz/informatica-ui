@@ -44,7 +44,6 @@ export class SolicitudComponent implements OnInit, OnDestroy {
       let range = datos.range.split('-')
       this.offset = parseInt(range[0], 10)
       const limit = parseInt(range[1], 10)
-      console.log("offset", this.offset)
       this.total = this.offset + limit
       this.range = `${this.offset}-${this.total}`
     });
@@ -57,6 +56,8 @@ export class SolicitudComponent implements OnInit, OnDestroy {
   }
 
   irTab(tab) {
+    const offset = this.offset * -1
+    this.setPage(offset)
     this.tabs.map(item => item.isActive = item.id === tab.id ? true : false)
   }
 
