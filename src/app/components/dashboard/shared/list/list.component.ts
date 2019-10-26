@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Solicituds } from '../../interfaces/interfaces';
 import { SolicitudService } from '../../services/solicitud.service';
 import { ActivatedRoute } from '@angular/router';
+import { ObserverService } from '../../services/observer.service';
+import { PaginationService } from '../../services/pagination.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -9,31 +12,63 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+  public $paginationSubscription: Subscription;
   public tabsIndex: number;
   public dataReceived: Solicituds = {
     solicituds: [],
     count: 0
   }
+  public offset: number = 0
+  public limit: number = 10
+  public range: string
   constructor(
     private solicitudService: SolicitudService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private observerService: ObserverService,
+    private paginationService: PaginationService
   ) {
     this.activatedRoute.params.subscribe(async params => {
       this.tabsIndex = params.id;
-      this.solicitudService.findAll(this.tabsIndex)
-    .subscribe(
-      (dataReceived: Solicituds) => {
-      this.dataReceived.solicituds = dataReceived.solicituds
-      this.dataReceived.count = dataReceived.count
-    },
-      err => this.handlerError(err)
-    )
+      this.setRange(0)
+      this.getSolicitud()
     });
   }
 
   ngOnInit() {
+    this.$paginationSubscription = this.paginationService.$pagination
+      .subscribe(
+        offset => {
+          this.setRange(offset)
+          this.getSolicitud()
+        },
+        error => console.error(error)
+      )
   }
-  
+
+  setRange(offset) {
+    this.offset += offset
+    if(this.offset >= 0) {
+      this.range = `${this.offset}-${this.limit}`
+    } else {
+      this.offset = 0
+    }
+  }
+
+  getSolicitud() {
+    this.solicitudService.findAll(this.tabsIndex, '', this.range)
+    .subscribe(
+      (dataReceived: Solicituds) => {
+        this.dataReceived.solicituds = dataReceived.solicituds
+        this.dataReceived.count = dataReceived.count
+        this.observerService.enviarDatos({
+          count: this.dataReceived.count,
+          range: this.range
+        })
+      },
+      err => this.handlerError(err)
+    )
+  }
+
   check(id: number) {
     console.log("modificar", id)
   }
@@ -42,7 +77,7 @@ export class ListComponent implements OnInit {
     console.log("modificar", id)
   }
 
-  eliminar(id: number){
+  eliminar(id: number) {
     console.log("eliminar", id)
   }
 
