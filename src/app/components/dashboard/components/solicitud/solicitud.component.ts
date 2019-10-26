@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ObserverService } from '../../services/observer.service';
+import { Subscription } from 'rxjs';
+import { PaginationService } from '../../services/pagination.service';
 
 @Component({
   selector: 'app-solicitud',
   templateUrl: './solicitud.component.html',
   styleUrls: ['./solicitud.component.scss']
 })
-export class SolicitudComponent implements OnInit {
+export class SolicitudComponent implements OnInit, OnDestroy {
   public title = 'Solicitud'
   public tabs = [
     {
@@ -27,11 +30,37 @@ export class SolicitudComponent implements OnInit {
       icon: 'check-circle'
     }
   ]
-  constructor() { }
+  public offset: number
+  public total: number
+  public count: number
+  public range: string
+  public $subscription: Subscription;
+  constructor(
+    private observerService: ObserverService,
+    private paginationService: PaginationService
+    ) {
+    this.$subscription = this.observerService.$observador.subscribe(datos => {
+      this.count = datos.count
+      let range = datos.range.split('-')
+      this.offset = parseInt(range[0], 10)
+      const limit = parseInt(range[1], 10)
+      console.log("offset", this.offset)
+      this.total = this.offset + limit
+      this.range = `${this.offset}-${this.total}`
+    });
+  }
 
   ngOnInit() { }
 
+  setPage(offset: number) {
+    this.paginationService.setPagination(offset)
+  }
+
   irTab(tab) {
     this.tabs.map(item => item.isActive = item.id === tab.id ? true : false)
+  }
+
+  ngOnDestroy(): void {
+    this.$subscription.unsubscribe();
   }
 }

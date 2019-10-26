@@ -1,15 +1,8 @@
 .card-header {
+  height: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  h3{
-    flex: 1 0 300px;
-    margin: 0;
-    small {
-      padding-left: 0.3rem;
-      font-weight: normal;
-    }
-  }
 }
 
 .mat-card-content {
@@ -34,4 +27,11 @@
 .colorTabs {
   color: #009688;
   opacity: 0.8;
+}
+
+.link-icon {
+  fa:hover {
+    background-color: #eee;
+    padding: 0.7rem 0.8rem;
+  }
 }
