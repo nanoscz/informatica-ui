@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Solicituds } from '../../interfaces/interfaces';
 import { SolicitudService } from '../../services/solicitud.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,8 +11,9 @@ import { Subscription } from 'rxjs';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
   public $paginationSubscription: Subscription;
+  public $searchSubscription: Subscription;
   public tabsIndex: number;
   public dataReceived: Solicituds = {
     solicituds: [],
@@ -21,6 +22,7 @@ export class ListComponent implements OnInit {
   public offset: number = 0
   public limit: number = 10
   public range: string
+  public term: string = '';
   constructor(
     private solicitudService: SolicitudService,
     private activatedRoute: ActivatedRoute,
@@ -43,6 +45,14 @@ export class ListComponent implements OnInit {
         },
         error => console.error(error)
       )
+    this.$searchSubscription = this.observerService.$search
+      .subscribe(
+        term => {
+          this.term = term
+          this.getSolicitud()
+        },
+        err => console.error(err)
+      )
   }
 
   setRange(offset) {
@@ -55,7 +65,7 @@ export class ListComponent implements OnInit {
   }
 
   getSolicitud() {
-    this.solicitudService.findAll(this.tabsIndex, '', this.range)
+    this.solicitudService.findAll(this.tabsIndex, this.term, this.range)
     .subscribe(
       (dataReceived: Solicituds) => {
         this.dataReceived.solicituds = dataReceived.solicituds
@@ -83,6 +93,11 @@ export class ListComponent implements OnInit {
 
   handlerError(err) {
     return Promise.reject(err)
+  }
+
+  ngOnDestroy(): void {
+    this.$paginationSubscription.unsubscribe()
+    this.$searchSubscription.unsubscribe()
   }
 
 }
