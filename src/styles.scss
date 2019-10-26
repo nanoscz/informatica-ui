@@ -43,3 +43,11 @@ $informatica-theme: mat-light-theme($informatica-primary, $informatica-accent, $
   display: block;
   width: 100% !important;
 }
+
+.link-icon {
+  fa:hover {
+    background-color: rgb(216, 215, 215);
+    padding: 0.7rem;
+    border-radius: 50%;
+  }
+}
