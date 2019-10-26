@@ -9,7 +9,7 @@
         <span>{{ title }}</span>
         <div class="search-main">
           <fa name="search"></fa>
-          <input type="text" placeholder="Buscar...">
+          <input #input (keyup.enter)="search(input.value)" type="text" placeholder="Buscar...">
         </div>
         <span class="example-spacer"></span>
         <button class="example-icon" mat-icon-button>

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { Router, NavigationEnd, ActivationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormComponent } from './shared/form/form.component';
+import { ObserverService } from './services/observer.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   classSidebar: any;
   constructor(
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private observerService: ObserverService
   ) {
     this.menus = [
       {
@@ -72,6 +74,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
+  search(term: string) {
+    this.observerService.sendSearch(term)
+  }
   ngAfterViewInit() {
     this.classSidebar = this.sidebar.nativeElement.classList;
     const mainSize = this.main.nativeElement.offsetWidth;
