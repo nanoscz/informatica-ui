@@ -41,6 +41,40 @@ svg {
   }
 }
 
+.search-main {
+  position: relative;
+  width: 600px;
+  margin-left: 7rem;
+  fa {
+    position: absolute;
+    left: 5px;
+    top: 0.4rem;
+    padding: 9px 8px;
+    font-size: 14px;
+    color: #5f6368;
+    transition: 0.3s;
+    
+  }
+  input{
+    width: 100%;
+    border: 1px solid rgb(241, 243, 244);
+    background-color: rgb(241, 243, 244);
+    border-radius: 8px;
+    margin: 10px 0;
+    outline: none;
+    padding: 0.8rem;
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    &:focus {
+      background-color: #fff;
+      border: 1px solid rgba(65,69,73,0.5);
+      box-shadow: 0 1px 1px 0 rgba(65,69,73,0.3)
+                  0 1px 3px 0 rgba(65,69,73,0.15)
+    }
+  }
+}
+
 .btn-menu {
   display: flex;
   justify-content: center;
