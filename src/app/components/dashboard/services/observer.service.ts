@@ -5,11 +5,18 @@ import { Subject } from 'rxjs/internal/Subject';
   providedIn: 'root'
 })
 export class ObserverService {
-  private subject = new Subject<any>();
-  $observador = this.subject.asObservable();
+  private observer = new Subject<any>();
+  private searchObserver = new Subject<any>();
+  $observador = this.observer.asObservable();
+  
+  $search = this.searchObserver.asObservable();
   constructor() { }
 
   enviarDatos(datos: any) {
-    this.subject.next(datos);
+    this.observer.next(datos);
+  }
+
+  sendSearch(term: string) {
+    this.searchObserver.next(term)
   }
 }
