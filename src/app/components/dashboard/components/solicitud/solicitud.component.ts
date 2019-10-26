@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ObserverService } from '../../services/observer.service';
 import { Subscription } from 'rxjs';
 import { PaginationService } from '../../services/pagination.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitud',
@@ -37,8 +38,13 @@ export class SolicitudComponent implements OnInit, OnDestroy {
   public $subscription: Subscription;
   constructor(
     private observerService: ObserverService,
-    private paginationService: PaginationService
+    private paginationService: PaginationService,
+    private router: Router
     ) {
+    const url = this.router.url.split('/')
+    const tabsIndex = parseInt(url[url.length-1], 10)
+    this.setActiveTabs(tabsIndex)
+    
     this.$subscription = this.observerService.$observador.subscribe(datos => {
       this.count = datos.count
       let range = datos.range.split('-')
@@ -58,7 +64,11 @@ export class SolicitudComponent implements OnInit, OnDestroy {
   irTab(tab) {
     const offset = this.offset * -1
     this.setPage(offset)
-    this.tabs.map(item => item.isActive = item.id === tab.id ? true : false)
+    this.setActiveTabs(tab.id)
+  }
+
+  setActiveTabs(tabsIndex) {
+    this.tabs.map(item => item.isActive = item.id === tabsIndex ? true : false)
   }
 
   ngOnDestroy(): void {
