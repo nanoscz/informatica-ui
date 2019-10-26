@@ -13,8 +13,11 @@
     flex: 1 0 60%
   }
   .date-text {
-    font-size: 14px;
-    flex: 1
+    font-size: 13px;
+    font-weight: 500;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
   }
   &:hover {
     background-color: #eee;
