@@ -85,7 +85,7 @@ export class FormPersonalComponent implements OnInit {
     this.personalService.register(personal)
     .then(data => {
       this.loading = false;
-      this.observerServicio.enviarDatos(data);
+      this.observerServicio.enviarDatos('personal', data);
       this.myNgForm.resetForm();
     })
     .catch(this.handleError.bind(this));
