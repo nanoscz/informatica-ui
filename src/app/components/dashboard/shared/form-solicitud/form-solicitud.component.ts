@@ -30,12 +30,13 @@ export class FormSolicitudComponent implements OnInit {
 
   async ngOnInit() {
     this.form = this.fb.group({
-      fecha: [new Date(), [Validators.required]],
-      ruta: ['123', [Validators.required]],
-      cite: ['123', [Validators.required]],
-      referencia: ['Seguimientos de gasto de otras regionales', [Validators.required]],
+      fecha: ['', [Validators.required]],
+      ruta: ['', [Validators.required]],
+      cite: ['', [Validators.required]],
+      referencia: ['', [Validators.required]],
       remitente: [null, [Validators.required]],
     });
+    this.setFecha();
     this.form.controls.remitente.valueChanges
       .subscribe((value: string) => {
         if (value !== null && value.length >= 4 ) {
@@ -45,6 +46,10 @@ export class FormSolicitudComponent implements OnInit {
           })
         }
       });
+  }
+
+  setFecha() {
+    this.form.controls.fecha.setValue(new Date())
   }
 
   displayFn(remitente): string | undefined {
@@ -79,6 +84,7 @@ export class FormSolicitudComponent implements OnInit {
         this.loading = false;
         this.observerServicio.enviarDatos('solicitud', solicitud);
         this.myNgForm.resetForm();
+        this.setFecha();
       })
     this.loading = false;
   }
