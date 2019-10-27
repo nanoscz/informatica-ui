@@ -1,1 +1,38 @@
-<p>form-solicitud works!</p>
+<div class="example-container">
+  <div class="form-header">
+    <h3>{{ this.data.title }} {{ remitentes.length }}</h3>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="submit()" #f="ngForm">
+    <mat-form-field>
+      <input id="dateInput" matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="fecha">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input id="rutaInput" matInput placeholder="Ruta" formControlName="ruta" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Cite" formControlName="cite" required>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea rows="3" matInput placeholder="Referencia" formControlName="referencia" required></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Remitente" [matAutocomplete]="auto" formControlName="remitente" required>
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let remitente of remitentes" [value]="remitente">
+          <span>{{remitente.nombre | titlecase }}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <div class="actions" *ngIf="!loading">
+      <a mat-button mat-dialog-close>Cancelar</a>
+      <button mat-button class="btn-guardar" color="primary" [disabled]="loading">
+        {{txtSubmit}}
+      </button>
+    </div>
+    <div class="guardar" *ngIf="loading">
+      <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
+  </form>
+</div>
