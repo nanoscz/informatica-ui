@@ -35,7 +35,7 @@ import { FormSolicitudComponent } from './shared/form-solicitud/form-solicitud.c
     CapitalizePipe,
     FormSolicitudComponent,
   ],
-  entryComponents: [FormPersonalComponent],
+  entryComponents: [FormPersonalComponent, FormSolicitudComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
