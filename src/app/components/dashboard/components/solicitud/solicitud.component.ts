@@ -40,18 +40,20 @@ export class SolicitudComponent implements OnInit, OnDestroy {
     private observerService: ObserverService,
     private paginationService: PaginationService,
     private router: Router
-    ) {
+  ) {
     const url = this.router.url.split('/')
-    const tabsIndex = parseInt(url[url.length-1], 10)
+    const tabsIndex = parseInt(url[url.length - 1], 10)
     this.setActiveTabs(tabsIndex)
-    
+
     this.$subscription = this.observerService.$observador.subscribe(datos => {
-      this.count = datos.count
-      let range = datos.range.split('-')
-      this.offset = parseInt(range[0], 10)
-      const limit = parseInt(range[1], 10)
-      this.total = this.offset + limit
-      this.range = `${this.offset}-${this.total}`
+      if (datos.type === 'range') {
+        this.count = datos.datos.count
+        let range = datos.datos.range.split('-')
+        this.offset = parseInt(range[0], 10)
+        const limit = parseInt(range[1], 10)
+        this.total = this.offset + limit
+        this.range = `${this.offset}-${this.total}`
+      }
     });
   }
 
