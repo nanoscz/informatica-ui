@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -12,8 +11,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatDividerModule } from '@angular/material';
+import { MatDividerModule, MatNativeDateModule } from '@angular/material';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 const MODULES = [
   MatToolbarModule,
@@ -21,7 +22,6 @@ const MODULES = [
   MatCardModule,
   MatInputModule,
   MatListModule,
-  MatIconModule,
   MatMenuModule,
   MatProgressSpinnerModule,
   MatDialogModule,
@@ -30,7 +30,10 @@ const MODULES = [
   MatTabsModule,
   MatButtonToggleModule,
   MatDividerModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatAutocompleteModule
 ];
 
 @NgModule({
