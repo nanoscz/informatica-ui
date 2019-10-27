@@ -29,8 +29,8 @@ export class PersonalComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit() {
-    this.$subscription = this.observerServicio.$observador.subscribe(personal => {
-      this.dataReceived.personals.push(personal);
+    this.$subscription = this.observerServicio.$observador.subscribe(received => {
+      this.dataReceived.personals.push(received.datos);
       this.dataReceived.count += 1
     });
     this.getPersonal()

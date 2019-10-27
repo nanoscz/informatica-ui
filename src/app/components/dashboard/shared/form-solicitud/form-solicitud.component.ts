@@ -81,12 +81,11 @@ export class FormSolicitudComponent implements OnInit {
   guardar(solicitud: any) {
     this.solicitudServicie.register(solicitud)
       .then(solicitud => {
-        this.loading = false;
         this.observerServicio.enviarDatos('solicitud', solicitud);
         this.myNgForm.resetForm();
         this.setFecha();
+        this.loading = false;
       })
-    this.loading = false;
   }
 
   modificar(solicitud: any) {
