@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { Router, NavigationEnd, ActivationEnd } from '@angular/router';
+import { Router, ActivationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { FormPersonalComponent } from './shared/form-personal/form-personal.component';
 import { ObserverService } from './services/observer.service';
+
+import { FormPersonalComponent } from './shared/form-personal/form-personal.component';
+import { FormSolicitudComponent } from './shared/form-solicitud/form-solicitud.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,35 +45,42 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     ];
     this.router.events.subscribe((event: ActivationEnd) => {
-        if (event instanceof ActivationEnd && event.snapshot.firstChild == null) {
-          this.text = event.snapshot.data.title;
-        }
-      });
+      if (event instanceof ActivationEnd && event.snapshot.firstChild == null) {
+        this.text = event.snapshot.data.title;
+      }
+    });
   }
 
   ngOnInit() {
   }
 
   register(component: string) {
-    const dialogRef = this.dialog.open(FormPersonalComponent, {
-      width: '400px',
-      data: {
-        title: `Registrar ${component}`,
-        action: 'registrar',
-        personal: {
-          nom: '',
-          app: '',
-          apm: '',
-          servicio: 1,
-          pref: '',
-          cargo: ''
-        }
-      },
-      disableClose: true
-    });
-    dialogRef.afterClosed().subscribe(result => {
-     console.log('Register:close');
-    });
+    const form = {
+      'solicitud': FormSolicitudComponent,
+      'personal': FormPersonalComponent
+    }
+    let formComponent = form[component]
+    if(formComponent) {
+      const dialogRef = this.dialog.open(formComponent, {
+        width: '400px',
+        data: {
+          title: `Registrar ${component}`,
+          action: 'registrar',
+          personal: {
+            nom: '',
+            app: '',
+            apm: '',
+            servicio: 1,
+            pref: '',
+            cargo: ''
+          }
+        },
+        disableClose: true
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('Register:close');
+      });
+    }
   }
 
   search(term: string) {
