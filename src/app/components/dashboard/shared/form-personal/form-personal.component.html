@@ -12,7 +12,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-select placeholder="Servicio" formControlName="servicio" matNativeControl required>
-        <mat-option *ngFor="let servicio of servicios" [value]="servicio.id"> 
+        <mat-option *ngFor="let servicio of servicios" [value]="servicio.id">
           {{ servicio.nombre | titlecase }}
         </mat-option>
       </mat-select>
@@ -20,11 +20,11 @@
     <div class="actions" *ngIf="!loading">
       <a mat-button mat-dialog-close>Cancelar</a>
       <button mat-button class="btn-guardar" color="primary" [disabled]="loading">
-       {{ txtSubmit }}
+        {{ txtSubmit }}
       </button>
     </div>
-    <div class="guardar" *ngIf="loading">
-        <mat-spinner [diameter]="30"></mat-spinner>
-      </div>
+    <div class="loading" *ngIf="loading">
+      <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
   </form>
 </div>
