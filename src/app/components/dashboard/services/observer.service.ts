@@ -12,8 +12,8 @@ export class ObserverService {
   $search = this.searchObserver.asObservable();
   constructor() { }
 
-  enviarDatos(datos: any) {
-    this.observer.next(datos);
+  enviarDatos(type: string, datos: any) {
+    this.observer.next({type, datos});
   }
 
   sendSearch(term: string) {
