@@ -70,7 +70,7 @@ export class ListComponent implements OnInit, OnDestroy {
       (dataReceived: Solicituds) => {
         this.dataReceived.solicituds = dataReceived.solicituds
         this.dataReceived.count = dataReceived.count
-        this.observerService.enviarDatos({
+        this.observerService.enviarDatos('range',{
           count: this.dataReceived.count,
           range: this.range
         })
