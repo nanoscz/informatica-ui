@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router, NavigationEnd, ActivationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { FormComponent } from './shared/form/form.component';
+import { FormPersonalComponent } from './shared/form-personal/form-personal.component';
 import { ObserverService } from './services/observer.service';
 
 @Component({
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   register(component: string) {
-    const dialogRef = this.dialog.open(FormComponent, {
+    const dialogRef = this.dialog.open(FormPersonalComponent, {
       width: '400px',
       data: {
         title: `Registrar ${component}`,

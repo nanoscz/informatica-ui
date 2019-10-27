@@ -6,10 +6,10 @@ import { ObserverService } from '../../services/observer.service';
 
 @Component({
   selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  templateUrl: './form-personal.component.html',
+  styleUrls: ['./form-personal.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormPersonalComponent implements OnInit {
   @ViewChild('f', { static: false }) myNgForm;
 
   public loading = false;
@@ -20,7 +20,7 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private personalService: PersonalService,
     private observerServicio: ObserverService,
-    public dialogRef: MatDialogRef<FormComponent>,
+    public dialogRef: MatDialogRef<FormPersonalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.servicios = [

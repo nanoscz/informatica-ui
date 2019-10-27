@@ -11,7 +11,7 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ExpandDirective } from './directives/expand.directive';
 import { MaterialModule } from './material.module';
-import { FormComponent } from './shared/form/form.component';
+import { FormPersonalComponent } from './shared/form-personal/form-personal.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SearchComponent } from './shared/search/search.component';
 import { ServiciosPipe } from './pipes/servicios.pipe';
@@ -26,14 +26,14 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     ReportesComponent,
     PersonalComponent,
     ExpandDirective,
-    FormComponent,
+    FormPersonalComponent,
     SearchComponent,
     ServiciosPipe,
     ListComponent,
     ZfillPipe,
     CapitalizePipe,
   ],
-  entryComponents: [FormComponent],
+  entryComponents: [FormPersonalComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

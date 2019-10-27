@@ -3,7 +3,7 @@ import { PersonalService } from '../../services/personal.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ObserverService } from '../../services/observer.service';
 import { MatDialog } from '@angular/material';
-import { FormComponent } from '../../shared/form/form.component';
+import { FormPersonalComponent } from '../../shared/form-personal/form-personal.component';
 
 @Component({
   selector: 'app-personal',
@@ -73,7 +73,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
   }
 
   editar(personal: any, index: number) {
-    const dialogRef = this.dialog.open(FormComponent, {
+    const dialogRef = this.dialog.open(FormPersonalComponent, {
       width: '400px',
       data: {
         title: `Modificar Personal`,
