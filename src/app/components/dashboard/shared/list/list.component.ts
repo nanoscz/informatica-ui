@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 export class ListComponent implements OnInit, OnDestroy {
   public $paginationSubscription: Subscription;
   public $searchSubscription: Subscription;
+  public $observerSubscription: Subscription;
   public tabsIndex: number;
   public dataReceived: Solicituds = {
     solicituds: [],
@@ -53,11 +54,20 @@ export class ListComponent implements OnInit, OnDestroy {
         },
         err => console.error(err)
       )
+    this.$observerSubscription = this.observerService.$observador
+      .subscribe(
+        received => {
+          if(received.type === 'solicitud') {
+            this.getSolicitud()
+          }
+        },
+        err => console.error(err)
+      )
   }
 
   setRange(offset) {
     this.offset += offset
-    if(this.offset >= 0) {
+    if (this.offset >= 0) {
       this.range = `${this.offset}-${this.limit}`
     } else {
       this.offset = 0
@@ -66,17 +76,17 @@ export class ListComponent implements OnInit, OnDestroy {
 
   getSolicitud() {
     this.solicitudService.findAll(this.tabsIndex, this.term, this.range)
-    .subscribe(
-      (dataReceived: Solicituds) => {
-        this.dataReceived.solicituds = dataReceived.solicituds
-        this.dataReceived.count = dataReceived.count
-        this.observerService.enviarDatos('range',{
-          count: this.dataReceived.count,
-          range: this.range
-        })
-      },
-      err => this.handlerError(err)
-    )
+      .subscribe(
+        (dataReceived: Solicituds) => {
+          this.dataReceived.solicituds = dataReceived.solicituds
+          this.dataReceived.count = dataReceived.count
+          this.observerService.enviarDatos('range', {
+            count: this.dataReceived.count,
+            range: this.range
+          })
+        },
+        err => this.handlerError(err)
+      )
   }
 
   check(id: number) {
