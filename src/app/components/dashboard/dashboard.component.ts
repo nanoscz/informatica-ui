@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   search(term: string) {
-    this.observerService.sendSearch(term);
+    this.observerService.sendData('search', term);
   }
   ngAfterViewInit() {
     this.classSidebar = this.sidebar.nativeElement.classList;

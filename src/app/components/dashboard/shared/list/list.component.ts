@@ -46,18 +46,14 @@ export class ListComponent implements OnInit, OnDestroy {
         },
         error => console.error(error)
       );
-    this.$searchSubscription = this.observerService.$search
-      .subscribe(
-        term => {
-          this.term = term;
-          this.getSolicitud();
-        },
-        err => console.error(err)
-      );
     this.$observerSubscription = this.observerService.$observer
       .subscribe(
-        received => {
-          if (received.type === 'solicitud') {
+        dataReceived => {
+          if (dataReceived.type === 'search') {
+            this.term = dataReceived.data;
+            this.getSolicitud();
+          }
+          if (dataReceived.type === 'solicitud') {
             this.getSolicitud();
           }
         },
