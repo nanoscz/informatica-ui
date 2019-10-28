@@ -11,13 +11,13 @@
         {{ solicitud.fecha | date }}
       </div>
       <div style="display: none;">
-        <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="check" (click)="check(solicitud.id)">
+        <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Check" (click)="check(solicitud.id)">
           <fa name="check"></fa>
         </a>
-        <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Modificar" (click)="modificar(solicitud.id)">
+        <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Edit" (click)="edit(solicitud.id)">
           <fa name="pencil"></fa>
         </a>
-        <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Eliminar" (click)="eliminar(solicitud.id)">
+        <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Delete" (click)="delete(solicitud.id)">
           <fa name="trash"></fa>
         </a>
       </div>
@@ -25,3 +25,6 @@
     <mat-divider></mat-divider>
   </mat-list-item>
 </mat-list>
+<div class="not-data" *ngIf="!loading && dataReceived.count === 0">
+  <p>Not data found</p>
+</div>

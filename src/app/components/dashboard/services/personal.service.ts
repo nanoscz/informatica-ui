@@ -13,7 +13,7 @@ export class PersonalService {
   findAll(search: string, range: string) {
     const params = new HttpParams()
       .set('search', search)
-      .set('range', range)
+      .set('range', range);
     return this.http.get(this.baseUrl, { params })
       .toPromise()
       .catch(this.handleError);

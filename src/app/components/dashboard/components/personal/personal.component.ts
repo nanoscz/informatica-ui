@@ -11,29 +11,32 @@ import { FormPersonalComponent } from '../../shared/form-personal/form-personal.
   styleUrls: ['./personal.component.scss']
 })
 export class PersonalComponent implements OnInit, OnDestroy {
-  public title = 'Personals'
+  public title = 'Personals';
   public dataReceived: any = {
     personals: [],
     count: 0
-  }
-  public loading: boolean = true
+  };
+  public loading = true;
   public $subscription: Subscription;
 
-  public term: string = ''
-  public limit: number = 10
-  public offset: number = 0
+  public term = '';
+  public limit = 10;
+  public offset = 0;
   constructor(
     public dialog: MatDialog,
-    private observerServicio: ObserverService,
+    private observerService: ObserverService,
     private personalService: PersonalService
-    ) { }
+  ) { }
 
   ngOnInit() {
-    this.$subscription = this.observerServicio.$observador.subscribe(received => {
-      this.dataReceived.personals.push(received.datos);
-      this.dataReceived.count += 1
-    });
-    this.getPersonal()
+    this.$subscription = this.observerService.$observer
+      .subscribe(dataReceived => {
+        if (dataReceived.type === 'personal') {
+          this.dataReceived.personals.push(dataReceived.data);
+          this.dataReceived.count += 1;
+        }
+      });
+    this.getPersonal();
   }
 
   getPersonal(text: string = '') {
@@ -43,7 +46,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
         this.dataReceived = dataReceived;
         this.loading = false;
       })
-      .catch(this.handleError.bind(this))
+      .catch(this.handleError.bind(this));
   }
 
   getMorePersonal() {
@@ -51,28 +54,24 @@ export class PersonalComponent implements OnInit, OnDestroy {
     this.personalService.findAll(this.term, `${this.offset}-${this.limit}`)
       .then((dataReceived: any) => {
         for (const personal of dataReceived.personals) {
-          this.dataReceived.personals.push(personal)
+          this.dataReceived.personals.push(personal);
         }
         this.loading = false;
       })
-      .catch(this.handleError.bind(this))
-  } 
+      .catch(this.handleError.bind(this));
+  }
 
-  buscar(text: string) {
-    this.term = text;
-    if(text.length >= 1){
-      this.getPersonal(text)
+  search(term: string) {
+    this.term = term;
+    if (term.length >= 1) {
+      this.getPersonal(term);
     }
-    if(text.length === 0 || text === ''){
-      this.getPersonal()
+    if (term.length === 0 || term === '') {
+      this.getPersonal();
     }
   }
 
-  ngOnDestroy(): void {
-    this.$subscription.unsubscribe();
-  }
-
-  editar(personal: any, index: number) {
+  edit(personal: any, index: number) {
     const dialogRef = this.dialog.open(FormPersonalComponent, {
       width: '400px',
       data: {
@@ -83,23 +82,27 @@ export class PersonalComponent implements OnInit, OnDestroy {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(data => {
-      if(data){
+      if (data) {
         this.dataReceived.personals[index] = data;
       }
     });
   }
 
-  eliminar(id: number, index: number) {
+  delete(id: number, index: number) {
     this.personalService.delete(id)
-    .then(() => {
-      this.dataReceived.personals.splice(index, 1);
-      this.dataReceived.count -= 1
-    })
-    .catch(this.handleError.bind(this));
+      .then(() => {
+        this.dataReceived.personals.splice(index, 1);
+        this.dataReceived.count -= 1;
+      })
+      .catch(this.handleError.bind(this));
   }
 
   handleError(err: any): Promise<any> {
     this.loading = false;
     return Promise.reject(err.error);
+  }
+
+  ngOnDestroy(): void {
+    this.$subscription.unsubscribe();
   }
 }

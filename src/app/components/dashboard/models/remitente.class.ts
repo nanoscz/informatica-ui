@@ -4,5 +4,5 @@ export class Remitente {
     public nombre: string,
     public cargo: string,
     public servicio: string
-    ){}
+    ) {}
 }

@@ -5,26 +5,26 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ZfillPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
-    return this.zfill(value, 5);
+  transform(ruta: number): string {
+    return this.zfill(ruta, 5);
   }
 
-  zfill(number, width) {
-    var numberOutput = Math.abs(number);
-    var length = number.toString().length;
-    var zero = "0";
+  zfill(value: number, width: number) {
+    const valueOutput = Math.abs(value);
+    const length = value.toString().length;
+    const zero = '0';
 
     if (width <= length) {
-      if (number < 0) {
-        return ("-" + numberOutput.toString());
+      if (value < 0) {
+        return ('-' + valueOutput.toString());
       } else {
-        return numberOutput.toString();
+        return valueOutput.toString();
       }
     } else {
-      if (number < 0) {
-        return ("-" + (zero.repeat(width - length)) + numberOutput.toString());
+      if (value < 0) {
+        return ('-' + (zero.repeat(width - length)) + valueOutput.toString());
       } else {
-        return ((zero.repeat(width - length)) + numberOutput.toString());
+        return ((zero.repeat(width - length)) + valueOutput.toString());
       }
     }
   }

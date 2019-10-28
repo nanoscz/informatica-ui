@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
-import { Remitente } from '../models/remitente.class';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +13,7 @@ export class RemitenteService {
   findAll(search: string, range: string = '0-500') {
     const params = new HttpParams()
       .set('search', search)
-      .set('range', range)
+      .set('range', range);
     return this.http.get(this.baseUrl, { params })
       .toPromise()
       .catch(this.handleError);

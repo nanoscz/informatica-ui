@@ -1,7 +1,7 @@
 <div class="container-search">
   <mat-form-field [style.width.%]="size">
-    <input matInput type="text" placeholder="Search..." (keyup)="buscar($event)" [(ngModel)]="search">
-    <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
+    <input matInput type="text" placeholder="Search..." (keyup)="search($event)" [(ngModel)]="term">
+    <button mat-button *ngIf="term" matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
       <fa name="times"></fa>
     </button>
   </mat-form-field>

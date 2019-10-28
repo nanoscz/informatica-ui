@@ -10,10 +10,10 @@ export class ServiciosPipe implements PipeTransform {
     { id: 3, nombre: 'servicio tecnico', pref: 'tec' },
     { id: 4, nombre: 'archivo', pref: 'arch' },
     { id: 5, nombre: 'secretaria', pref: 'sec'},
-  ]
+  ];
   transform(id: number, ...args: any[]): any {
-    const servicio = this.servicios.filter(item => item.id === id)
-    return servicio[0].nombre
+    const servicio = this.servicios.filter(item => item.id === id);
+    return servicio[0].nombre;
   }
 
 }

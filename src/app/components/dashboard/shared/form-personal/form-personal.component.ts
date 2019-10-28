@@ -19,7 +19,7 @@ export class FormPersonalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private personalService: PersonalService,
-    private observerServicio: ObserverService,
+    private observerService: ObserverService,
     public dialogRef: MatDialogRef<FormPersonalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -58,10 +58,10 @@ export class FormPersonalComponent implements OnInit {
     this.loading = true;
     switch (this.data.action) {
       case 'registrar':
-          this.guardar(personal);
+          this.save(personal);
           break;
       case 'modificar':
-          this.modificar(personal);
+          this.edit(personal);
           break;
       default:
         console.log('Fatal Error');
@@ -69,23 +69,23 @@ export class FormPersonalComponent implements OnInit {
     }
   }
 
-  modificar(personal: any) {
+  edit(personal: any) {
     this.personalService.update(personal, this.data.personal.id)
     .then(() => {
       this.loading = false;
       this.dialogRef.close(personal);
     })
-    .catch(this.handleError);
+    .catch(this.handleError.bind(this));
   }
 
-  guardar(personal: any) {
+  save(personal: any) {
     const servicio = this.servicios.filter(item => item.id === personal.servicio);
     personal.pref = servicio[0].pref;
     personal.cargo = '';
     this.personalService.register(personal)
-    .then(personal => {
+    .then(data => {
       this.loading = false;
-      this.observerServicio.enviarDatos('personal', personal);
+      this.observerService.sendData('personal', data);
       this.myNgForm.resetForm();
     })
     .catch(this.handleError.bind(this));

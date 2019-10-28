@@ -51,3 +51,8 @@ $informatica-theme: mat-light-theme($informatica-primary, $informatica-accent, $
     border-radius: 50%;
   }
 }
+
+.not-data {
+  display: flex; 
+  justify-content: center;
+}

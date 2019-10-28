@@ -56,11 +56,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   register(component: string) {
     const form = {
-      'solicitud': FormSolicitudComponent,
-      'personal': FormPersonalComponent
-    }
-    let formComponent = form[component]
-    if(formComponent) {
+      solicitud: FormSolicitudComponent,
+      personal: FormPersonalComponent
+    };
+    const formComponent = form[component];
+    if (formComponent) {
       const dialogRef = this.dialog.open(formComponent, {
         width: '400px',
         data: {
@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   search(term: string) {
-    this.observerService.sendSearch(term)
+    this.observerService.sendSearch(term);
   }
   ngAfterViewInit() {
     this.classSidebar = this.sidebar.nativeElement.classList;

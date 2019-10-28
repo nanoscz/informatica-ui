@@ -13,8 +13,8 @@ export class SolicitudService {
   findAll(type: number, search: string = '', range: string = '0-50') {
     const params = new HttpParams()
       .set('search', search)
-      .set('range', range)
-    return this.http.get(`${this.baseUrl}/${type}/all`, { params })
+      .set('range', range);
+    return this.http.get(`${this.baseUrl}/${type}/all`, { params });
   }
 
   findOne(id: number) {

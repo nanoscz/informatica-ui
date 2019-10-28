@@ -36,20 +36,20 @@ export class FormSolicitudComponent implements OnInit {
       referencia: ['', [Validators.required]],
       remitente: [null, [Validators.required]],
     });
-    this.setFecha();
     this.form.controls.remitente.valueChanges
       .subscribe((value: string) => {
-        if (value !== null && value.length >= 4 ) {
+        if (value !== null && value.length >= 4) {
           this.remitenteService.findAll(value)
-          .then((results: any) => {
-            this.remitentes = results.remitentes
-          })
+            .then((results: any) => {
+              this.remitentes = results.remitentes;
+            });
         }
       });
+    this.setDate();
   }
 
-  setFecha() {
-    this.form.controls.fecha.setValue(new Date())
+  setDate() {
+    this.form.controls.fecha.setValue(new Date());
   }
 
   displayFn(remitente): string | undefined {
@@ -61,36 +61,34 @@ export class FormSolicitudComponent implements OnInit {
       return;
     }
     const solicitud = Object.assign({}, this.form.value);
-    solicitud.remitenteId = solicitud.remitente.id
-    solicitud.userId = 1
-    solicitud.estado = 1
-    this.loading = true
+    solicitud.remitenteId = solicitud.remitente.id;
+    solicitud.userId = 1;
+    solicitud.estado = 1;
+    this.loading = true;
     switch (this.data.action) {
       case 'registrar':
-          this.guardar(solicitud);
-          break;
+        this.save(solicitud);
+        break;
       case 'modificar':
-          this.modificar(solicitud);
-          break;
+        this.edit(solicitud);
+        break;
       default:
         console.log('Fatal Error');
         break;
     }
   }
 
-  guardar(solicitud: any) {
+  save(solicitud: any) {
     this.solicitudServicie.register(solicitud)
-      .then(solicitud => {
-        this.observerServicio.enviarDatos('solicitud', solicitud);
+      .then(data => {
+        this.observerServicio.sendData('solicitud', data);
         this.myNgForm.resetForm();
-        this.setFecha();
+        this.setDate();
         this.loading = false;
-      })
+      });
   }
 
-  modificar(solicitud: any) {
-
-    this.loading = false;
+  edit(solicitud: any) {
   }
-  
+
 }

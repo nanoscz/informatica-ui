@@ -19,11 +19,11 @@ export class ListComponent implements OnInit, OnDestroy {
   public dataReceived: Solicituds = {
     solicituds: [],
     count: 0
-  }
-  public offset: number = 0
-  public limit: number = 10
-  public range: string
-  public term: string = '';
+  };
+  public offset = 0;
+  public limit = 10;
+  public range: string;
+  public term = '';
   constructor(
     private solicitudService: SolicitudService,
     private activatedRoute: ActivatedRoute,
@@ -32,8 +32,8 @@ export class ListComponent implements OnInit, OnDestroy {
   ) {
     this.activatedRoute.params.subscribe(async params => {
       this.tabsIndex = params.id;
-      this.setRange(0)
-      this.getSolicitud()
+      this.setRange(0);
+      this.getSolicitud();
     });
   }
 
@@ -41,36 +41,36 @@ export class ListComponent implements OnInit, OnDestroy {
     this.$paginationSubscription = this.paginationService.$pagination
       .subscribe(
         offset => {
-          this.setRange(offset)
-          this.getSolicitud()
+          this.setRange(offset);
+          this.getSolicitud();
         },
         error => console.error(error)
-      )
+      );
     this.$searchSubscription = this.observerService.$search
       .subscribe(
         term => {
-          this.term = term
-          this.getSolicitud()
+          this.term = term;
+          this.getSolicitud();
         },
         err => console.error(err)
-      )
-    this.$observerSubscription = this.observerService.$observador
+      );
+    this.$observerSubscription = this.observerService.$observer
       .subscribe(
         received => {
-          if(received.type === 'solicitud') {
-            this.getSolicitud()
+          if (received.type === 'solicitud') {
+            this.getSolicitud();
           }
         },
         err => console.error(err)
-      )
+      );
   }
 
   setRange(offset) {
-    this.offset += offset
+    this.offset += offset;
     if (this.offset >= 0) {
-      this.range = `${this.offset}-${this.limit}`
+      this.range = `${this.offset}-${this.limit}`;
     } else {
-      this.offset = 0
+      this.offset = 0;
     }
   }
 
@@ -78,36 +78,36 @@ export class ListComponent implements OnInit, OnDestroy {
     this.solicitudService.findAll(this.tabsIndex, this.term, this.range)
       .subscribe(
         (dataReceived: Solicituds) => {
-          this.dataReceived.solicituds = dataReceived.solicituds
-          this.dataReceived.count = dataReceived.count
-          this.observerService.enviarDatos('range', {
+          this.dataReceived.solicituds = dataReceived.solicituds;
+          this.dataReceived.count = dataReceived.count;
+          this.observerService.sendData('range', {
             count: this.dataReceived.count,
             range: this.range
-          })
+          });
         },
         err => this.handlerError(err)
-      )
+      );
   }
 
   check(id: number) {
-    console.log("modificar", id)
+    console.log('modificar', id);
   }
 
-  modificar(id: number) {
-    console.log("modificar", id)
+  edit(id: number) {
+    console.log('modificar', id);
   }
 
-  eliminar(id: number) {
-    console.log("eliminar", id)
+  delete(id: number) {
+    console.log('eliminar', id);
   }
 
   handlerError(err) {
-    return Promise.reject(err)
+    return Promise.reject(err);
   }
 
   ngOnDestroy(): void {
-    this.$paginationSubscription.unsubscribe()
-    this.$searchSubscription.unsubscribe()
+    this.$paginationSubscription.unsubscribe();
+    this.$searchSubscription.unsubscribe();
   }
 
 }
