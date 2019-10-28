@@ -3,7 +3,6 @@ import { Solicituds } from '../../interfaces/interfaces';
 import { SolicitudService } from '../../services/solicitud.service';
 import { ActivatedRoute } from '@angular/router';
 import { ObserverService } from '../../services/observer.service';
-import { PaginationService } from '../../services/pagination.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -12,8 +11,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit, OnDestroy {
-  public $paginationSubscription: Subscription;
-  public $searchSubscription: Subscription;
   public $observerSubscription: Subscription;
   public tabsIndex: number;
   public dataReceived: Solicituds = {
@@ -27,8 +24,7 @@ export class ListComponent implements OnInit, OnDestroy {
   constructor(
     private solicitudService: SolicitudService,
     private activatedRoute: ActivatedRoute,
-    private observerService: ObserverService,
-    private paginationService: PaginationService
+    private observerService: ObserverService
   ) {
     this.activatedRoute.params.subscribe(async params => {
       this.tabsIndex = params.id;
@@ -38,24 +34,18 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.$paginationSubscription = this.paginationService.$pagination
-      .subscribe(
-        offset => {
-          this.setRange(offset);
-          this.getSolicitud();
-        },
-        error => console.error(error)
-      );
     this.$observerSubscription = this.observerService.$observer
       .subscribe(
         dataReceived => {
-          if (dataReceived.type === 'search') {
-            this.term = dataReceived.data;
-            this.getSolicitud();
+          switch (dataReceived.type) {
+            case 'search':
+              this.term = dataReceived.data;
+              break;
+            case 'pagination':
+              this.setRange(dataReceived.data);
+              break;
           }
-          if (dataReceived.type === 'solicitud') {
-            this.getSolicitud();
-          }
+          this.getSolicitud();
         },
         err => console.error(err)
       );
@@ -102,8 +92,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.$paginationSubscription.unsubscribe();
-    this.$searchSubscription.unsubscribe();
+    this.$observerSubscription.unsubscribe();
   }
 
 }

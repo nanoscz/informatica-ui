@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ObserverService } from '../../services/observer.service';
 import { Subscription } from 'rxjs';
-import { PaginationService } from '../../services/pagination.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -35,17 +34,16 @@ export class SolicitudComponent implements OnInit, OnDestroy {
   public total: number;
   public count: number;
   public range: string;
-  public $subscription: Subscription;
+  public $observerSubscription: Subscription;
   constructor(
     private observerService: ObserverService,
-    private paginationService: PaginationService,
     private router: Router
   ) {
     const url = this.router.url.split('/');
     const tabsIndex = parseInt(url[url.length - 1], 10);
     this.setActiveTabs(tabsIndex);
 
-    this.$subscription = this.observerService.$observer
+    this.$observerSubscription = this.observerService.$observer
       .subscribe(dataReceived => {
         if (dataReceived.type === 'range') {
           this.count = dataReceived.data.count;
@@ -61,7 +59,7 @@ export class SolicitudComponent implements OnInit, OnDestroy {
   ngOnInit() { }
 
   setPage(offset: number) {
-    this.paginationService.setPagination(offset);
+    this.observerService.sendData('pagination', offset);
   }
 
   goTab(tab) {
@@ -75,6 +73,6 @@ export class SolicitudComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.$subscription.unsubscribe();
+    this.$observerSubscription.unsubscribe();
   }
 }
