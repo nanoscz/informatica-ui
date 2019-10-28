@@ -44,8 +44,12 @@ export class ListComponent implements OnInit, OnDestroy {
             case 'pagination':
               this.setRange(dataReceived.data);
               break;
+           default:
+              break;
           }
-          this.getSolicitud();
+          if (dataReceived.type !== 'range') {
+            this.getSolicitud();
+          }
         },
         err => console.error(err)
       );
