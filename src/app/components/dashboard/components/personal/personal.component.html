@@ -3,7 +3,7 @@
       <div class="card-header">
           <h3 mat-subheader>{{ title }}<small>({{ dataReceived.count }})</small></h3>
           <div class="search">
-            <app-search [size]="40" (evento)=search($event)></app-search>
+            <app-search [size]="40" (event)=search($event)></app-search>
           </div>
       </div>
       <div class="content-list">
