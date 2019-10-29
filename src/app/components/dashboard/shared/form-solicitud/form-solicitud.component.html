@@ -42,7 +42,7 @@
   <mat-tab label="Remitente">
     <ng-template matTabContent>
       <div class="example-container">
-          <app-form-remitente></app-form-remitente>
+          <app-form-remitente (eventRemitente)="eventRemitente($event)"></app-form-remitente>
       </div>
     </ng-template>
   </mat-tab>

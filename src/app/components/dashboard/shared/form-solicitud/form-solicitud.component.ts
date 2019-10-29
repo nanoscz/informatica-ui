@@ -78,6 +78,10 @@ export class FormSolicitudComponent implements OnInit {
     }
   }
 
+  eventRemitente($event: string) {
+    this.form.controls.remitente.setValue($event)
+  }
+
   save(solicitud: any) {
     this.solicitudServicie.register(solicitud)
       .then(data => {
