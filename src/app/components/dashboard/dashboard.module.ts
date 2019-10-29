@@ -19,6 +19,7 @@ import { ListComponent } from './shared/list/list.component';
 import { ZfillPipe } from './pipes/zfill.pipe';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { FormSolicitudComponent } from './shared/form-solicitud/form-solicitud.component';
+import { FormRemitenteComponent } from './shared/form-remitente/form-remitente.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FormSolicitudComponent } from './shared/form-solicitud/form-solicitud.c
     ZfillPipe,
     CapitalizePipe,
     FormSolicitudComponent,
+    FormRemitenteComponent,
   ],
   entryComponents: [FormPersonalComponent, FormSolicitudComponent],
   imports: [
