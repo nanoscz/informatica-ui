@@ -14,6 +14,7 @@ import { ObserverService } from '../../services/observer.service';
 export class FormSolicitudComponent implements OnInit {
   @ViewChild('f', { static: false }) myNgForm;
   public loading = false;
+  public selectedIndex: number = 0;
   public txtSubmit = '';
   public form: FormGroup;
   public remitentes: any[] = [];
@@ -79,6 +80,7 @@ export class FormSolicitudComponent implements OnInit {
   }
 
   eventRemitente($event: string) {
+    this.selectedIndex = 0;
     this.form.controls.remitente.setValue($event)
   }
 
