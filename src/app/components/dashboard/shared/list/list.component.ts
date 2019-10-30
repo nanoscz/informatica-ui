@@ -42,6 +42,7 @@ export class ListComponent implements OnInit, OnDestroy {
         dataReceived => {
           switch (dataReceived.type) {
             case 'search':
+              this.setRange(0, true)
               this.term = dataReceived.data;
               break;
             case 'pagination':
@@ -58,13 +59,14 @@ export class ListComponent implements OnInit, OnDestroy {
       );
   }
 
-  setRange(offset) {
-    this.offset += offset;
-    if (this.offset >= 0) {
-      this.range = `${this.offset}-${this.limit}`;
-    } else {
+  setRange(offset: number, reset: boolean = false) {
+    if (reset) {
       this.offset = 0;
+      this.limit = 10;
+    } else {
+      this.offset += offset;
     }
+    this.range = `${this.offset}-${this.limit}`;
   }
 
   getSolicitud() {
