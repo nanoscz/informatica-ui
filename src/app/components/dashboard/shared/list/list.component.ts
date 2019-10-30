@@ -82,8 +82,10 @@ export class ListComponent implements OnInit, OnDestroy {
       );
   }
 
-  check(id: number) {
-    console.log('modificar', id);
+  async changeStatus(status: number ,id: number) {
+    const estado = status + 1;
+    await this.solicitudService.update({estado: estado}, id).catch(this.handlerError.bind(this))
+    this.getSolicitud()
   }
 
   edit(solicitud: any, index: number) {

@@ -4,8 +4,8 @@
       {{ solicitud.ruta | zfill }}
     </div>
     <div class="seconds-text">
-      <span>{{ solicitud.referencia | lowercase | capitalize }} - </span>
-      <span>{{ solicitud.remitente.nombre | titlecase }}</span>
+      <span>{{ solicitud.referencia | lowercase | capitalize }} </span>
+      <span> - {{ solicitud.remitente.nombre | titlecase }}</span>
     </div>
     <div class="date-text">
       <div>
@@ -14,7 +14,7 @@
       <div style="display: none;">
         <a class="link-icon" *ngIf="solicitud.estado !== 3"
           mat-icon-button matTooltipPosition="above" 
-          matTooltip="Check" (click)="check(solicitud.id)">
+          matTooltip="Change Status" (click)="changeStatus(solicitud.estado, solicitud.id)">
           <fa name="check"></fa>
         </a>
         <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Edit" (click)="edit(solicitud, i)">
