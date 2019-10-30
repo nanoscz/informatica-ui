@@ -1,5 +1,5 @@
 <mat-list>
-  <mat-list-item *ngFor="let solicitud of dataReceived.solicituds">
+  <mat-list-item *ngFor="let solicitud of dataReceived.solicituds; let i = index">
     <div class="firt-text">
       {{ solicitud.ruta | zfill }}
     </div>
@@ -14,7 +14,7 @@
         <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Check" (click)="check(solicitud.id)">
           <fa name="check"></fa>
         </a>
-        <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Edit" (click)="edit(solicitud.id)">
+        <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Edit" (click)="edit(solicitud, i)">
           <fa name="pencil"></fa>
         </a>
         <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Delete" (click)="delete(solicitud.id)">

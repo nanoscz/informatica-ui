@@ -25,11 +25,9 @@ export class FormSolicitudComponent implements OnInit {
     private observerServicio: ObserverService,
     public dialogRef: MatDialogRef<FormSolicitudComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-    this.txtSubmit = this.data.action === 'registrar' ? 'Guardar' : 'Modificar';
-  }
+  ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.form = this.fb.group({
       fecha: ['', [Validators.required]],
       ruta: ['', [Validators.required]],
@@ -44,10 +42,20 @@ export class FormSolicitudComponent implements OnInit {
             .then((results: any) => {
               this.remitentes = results.remitentes;
             })
-            .catch(this.handlerError);
+            .catch(this.handlerError.bind(this));
         }
       });
+    this.txtSubmit = this.data.action === 'registrar' ? 'Guardar' : 'Modificar';
     this.setDate();
+    if (this.data.action === 'edit') {
+      this.form.setValue({
+        fecha: this.data.solicitud.fecha,
+        ruta: this.data.solicitud.ruta,
+        cite: this.data.solicitud.cite,
+        referencia: this.data.solicitud.referencia,
+        remitente: this.data.solicitud.remitente
+      })
+    }
   }
 
   setDate() {
@@ -78,10 +86,10 @@ export class FormSolicitudComponent implements OnInit {
     solicitud.estado = 1;
     this.loading = true;
     switch (this.data.action) {
-      case 'registrar':
+      case 'register':
         this.save(solicitud);
         break;
-      case 'modificar':
+      case 'edit':
         this.edit(solicitud);
         break;
       default:
@@ -107,6 +115,13 @@ export class FormSolicitudComponent implements OnInit {
   }
 
   edit(solicitud: any) {
+    solicitud.id = this.data.solicitud.id
+    this.solicitudServicie.update(solicitud, solicitud.id)
+    .then(() => {
+      this.dialogRef.close(solicitud);
+    })
+    .catch(this.handlerError)
+    
   }
 
   handlerError(error) {

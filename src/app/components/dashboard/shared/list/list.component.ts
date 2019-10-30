@@ -4,6 +4,8 @@ import { SolicitudService } from '../../services/solicitud.service';
 import { ActivatedRoute } from '@angular/router';
 import { ObserverService } from '../../services/observer.service';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { FormSolicitudComponent } from '../form-solicitud/form-solicitud.component';
 
 @Component({
   selector: 'app-list',
@@ -24,7 +26,8 @@ export class ListComponent implements OnInit, OnDestroy {
   constructor(
     private solicitudService: SolicitudService,
     private activatedRoute: ActivatedRoute,
-    private observerService: ObserverService
+    private observerService: ObserverService,
+    public dialog: MatDialog
   ) {
     this.activatedRoute.params.subscribe(async params => {
       this.tabsIndex = params.id;
@@ -83,12 +86,28 @@ export class ListComponent implements OnInit, OnDestroy {
     console.log('modificar', id);
   }
 
-  edit(id: number) {
-    console.log('modificar', id);
+  edit(solicitud: any, index: number) {
+    console.log(solicitud, index)
+    const dialogRef = this.dialog.open(FormSolicitudComponent, {
+      width: '400px',
+      data: {
+        title: `edit`,
+        action: 'edit',
+        solicitud
+      },
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      console.log('Edit:close', data);
+      if (data) {
+        this.dataReceived.solicituds[index] = data
+      }
+    });
   }
 
-  delete(id: number) {
-    console.log('eliminar', id);
+  async delete(id: number) {
+    await this.solicitudService.delete(id).catch(this.handlerError.bind(this))
+    this.getSolicitud()
   }
 
   handlerError(err) {

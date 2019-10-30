@@ -65,15 +65,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         width: '400px',
         data: {
           title: `Registrar ${component}`,
-          action: 'registrar',
-          personal: {
-            nom: '',
-            app: '',
-            apm: '',
-            servicio: 1,
-            pref: '',
-            cargo: ''
-          }
+          action: 'registrar'
         },
         disableClose: true
       });
