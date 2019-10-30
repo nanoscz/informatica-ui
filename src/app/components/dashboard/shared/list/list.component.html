@@ -4,7 +4,8 @@
       {{ solicitud.ruta | zfill }}
     </div>
     <div class="seconds-text">
-      {{ solicitud.referencia | lowercase | capitalize }}
+      <span>{{ solicitud.referencia | lowercase | capitalize }} - </span>
+      <span>{{ solicitud.remitente.nombre | titlecase }}</span>
     </div>
     <div class="date-text">
       <div>
