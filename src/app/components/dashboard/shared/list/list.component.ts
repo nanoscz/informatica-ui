@@ -82,14 +82,14 @@ export class ListComponent implements OnInit, OnDestroy {
       );
   }
 
-  async changeStatus(status: number ,id: number) {
+  async changeStatus(status: number , id: number) {
     const estado = status + 1;
-    await this.solicitudService.update({estado: estado}, id).catch(this.handlerError.bind(this))
-    this.getSolicitud()
+    await this.solicitudService.update({estado}, id).catch(this.handlerError.bind(this));
+    this.getSolicitud();
   }
 
   edit(solicitud: any, index: number) {
-    console.log(solicitud, index)
+    console.log(solicitud, index);
     const dialogRef = this.dialog.open(FormSolicitudComponent, {
       width: '400px',
       data: {
@@ -102,14 +102,14 @@ export class ListComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(data => {
       console.log('Edit:close', data);
       if (data) {
-        this.dataReceived.solicituds[index] = data
+        this.dataReceived.solicituds[index] = data;
       }
     });
   }
 
   async delete(id: number) {
-    await this.solicitudService.delete(id).catch(this.handlerError.bind(this))
-    this.getSolicitud()
+    await this.solicitudService.delete(id).catch(this.handlerError.bind(this));
+    this.getSolicitud();
   }
 
   handlerError(err) {

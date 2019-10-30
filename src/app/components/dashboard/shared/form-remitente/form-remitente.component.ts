@@ -8,9 +8,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form-remitente.component.scss']
 })
 export class FormRemitenteComponent implements OnInit {
-  @Output() eventRemitente =  new EventEmitter()
-  public title:string = 'Register Remitente'
-  public form: FormGroup
+  @Output() eventRemitente =  new EventEmitter();
+  public title = 'Register Remitente';
+  public form: FormGroup;
   constructor(
     private remitenteService: RemitenteService,
     private fb: FormBuilder
@@ -21,23 +21,23 @@ export class FormRemitenteComponent implements OnInit {
       nombre: ['', Validators.required],
       cargo: ['', Validators.required],
       servicio: ['', Validators.required]
-    })
+    });
   }
 
   onSubmit() {
-    if(this.form.invalid) {
-      return
+    if (this.form.invalid) {
+      return;
     }
-    let remitente =  Object.assign({}, this.form.value)
+    const remitente =  Object.assign({}, this.form.value);
     this.remitenteService.register(remitente)
-      .then((remitente) => {
-        this.eventRemitente.emit(remitente)
+      .then((data) => {
+        this.eventRemitente.emit(data);
       })
-      .catch(this.handlerError)
-  } 
+      .catch(this.handlerError);
+  }
 
   handlerError(error) {
-    console.error(error.message)
-    Promise.reject(error)
+    console.error(error.message);
+    Promise.reject(error);
   }
 }

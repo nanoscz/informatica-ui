@@ -14,7 +14,7 @@ import { ObserverService } from '../../services/observer.service';
 export class FormSolicitudComponent implements OnInit {
   @ViewChild('f', { static: false }) myNgForm;
   public loading = false;
-  public selectedIndex: number = 0;
+  public selectedIndex = 0;
   public txtSubmit = '';
   public form: FormGroup;
   public remitentes: any[] = [];
@@ -25,7 +25,7 @@ export class FormSolicitudComponent implements OnInit {
     private observerServicio: ObserverService,
     public dialogRef: MatDialogRef<FormSolicitudComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -54,7 +54,7 @@ export class FormSolicitudComponent implements OnInit {
         cite: this.data.solicitud.cite,
         referencia: this.data.solicitud.referencia,
         remitente: this.data.solicitud.remitente
-      })
+      });
     }
   }
 
@@ -69,11 +69,15 @@ export class FormSolicitudComponent implements OnInit {
   isValidRemitente(formControl: FormControl) {
     const objError = {
       invalidsender: true
-    }
+    };
     if (formControl.value === null || typeof formControl.value === 'string') {
-      return objError
+      return objError;
     }
-    formControl.value.hasOwnProperty('id') ? null : objError
+    if (formControl.value.hasOwnProperty('id')) {
+      return null;
+    } else {
+      return objError;
+    }
   }
 
   submit() {
@@ -100,7 +104,7 @@ export class FormSolicitudComponent implements OnInit {
 
   eventRemitente($event: string) {
     this.selectedIndex = 0;
-    this.form.controls.remitente.setValue($event)
+    this.form.controls.remitente.setValue($event);
   }
 
   save(solicitud: any) {
@@ -115,16 +119,16 @@ export class FormSolicitudComponent implements OnInit {
   }
 
   edit(solicitud: any) {
-    solicitud.id = this.data.solicitud.id
+    solicitud.id = this.data.solicitud.id;
     this.solicitudServicie.update(solicitud, solicitud.id)
-    .then(() => {
-      this.dialogRef.close(solicitud);
-    })
-    .catch(this.handlerError)
-    
+      .then(() => {
+        this.dialogRef.close(solicitud);
+      })
+      .catch(this.handlerError);
+
   }
 
   handlerError(error) {
-    return Promise.reject(error)
+    return Promise.reject(error);
   }
 }
