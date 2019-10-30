@@ -25,7 +25,6 @@
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-
           <div class="actions" *ngIf="!loading">
             <a mat-button mat-dialog-close>Cancelar</a>
             <button mat-button class="btn-guardar" color="primary" [disabled]="loading">
@@ -42,7 +41,7 @@
   <mat-tab label="Remitente">
     <ng-template matTabContent>
       <div class="example-container">
-          <app-form-remitente (eventRemitente)="eventRemitente($event)"></app-form-remitente>
+        <app-form-remitente (eventRemitente)="eventRemitente($event)"></app-form-remitente>
       </div>
     </ng-template>
   </mat-tab>

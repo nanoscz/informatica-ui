@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { RemitenteService } from '../../services/remitente.service';
 import { SolicitudService } from '../../services/solicitud.service';
@@ -35,7 +35,7 @@ export class FormSolicitudComponent implements OnInit {
       ruta: ['', [Validators.required]],
       cite: ['', [Validators.required]],
       referencia: ['', [Validators.required]],
-      remitente: [null, [Validators.required]],
+      remitente: [null, [Validators.required, this.isValidRemitente]],
     });
     this.form.controls.remitente.valueChanges
       .subscribe((value: string) => {
@@ -43,7 +43,8 @@ export class FormSolicitudComponent implements OnInit {
           this.remitenteService.findAll(value)
             .then((results: any) => {
               this.remitentes = results.remitentes;
-            });
+            })
+            .catch(this.handlerError);
         }
       });
     this.setDate();
@@ -55,6 +56,16 @@ export class FormSolicitudComponent implements OnInit {
 
   displayFn(remitente): string | undefined {
     return remitente ? remitente.nombre : undefined;
+  }
+
+  isValidRemitente(formControl: FormControl) {
+    const objError = {
+      invalidsender: true
+    }
+    if (formControl.value === null || typeof formControl.value === 'string') {
+      return objError
+    }
+    formControl.value.hasOwnProperty('id') ? null : objError
   }
 
   submit() {
@@ -91,10 +102,14 @@ export class FormSolicitudComponent implements OnInit {
         this.myNgForm.resetForm();
         this.setDate();
         this.loading = false;
-      });
+      })
+      .catch(this.handlerError);
   }
 
   edit(solicitud: any) {
   }
 
+  handlerError(error) {
+    return Promise.reject(error)
+  }
 }
