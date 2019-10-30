@@ -9,7 +9,7 @@
           <fa name="chevron-left"></fa>
         </button>
         <button class="link-icon" mat-icon-button (click)="setPage(+10)"
-        [disabled]="total > count ? 'disabled': null">
+        [disabled]="total >= count ? 'disabled': null">
           <fa name="chevron-right"></fa>
         </button>
       </div>
