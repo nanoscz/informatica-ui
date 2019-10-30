@@ -64,8 +64,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       const dialogRef = this.dialog.open(formComponent, {
         width: '400px',
         data: {
-          title: `Registrar ${component}`,
-          action: 'registrar'
+          title: `register ${component}`,
+          action: 'register'
         },
         disableClose: true
       });

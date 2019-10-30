@@ -76,7 +76,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
       width: '400px',
       data: {
         title: `Modificar Personal`,
-        action: 'modificar',
+        action: 'edit',
         personal
       },
       disableClose: true

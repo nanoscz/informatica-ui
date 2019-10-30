@@ -57,10 +57,10 @@ export class FormPersonalComponent implements OnInit {
     const personal = Object.assign({}, this.form.value);
     this.loading = true;
     switch (this.data.action) {
-      case 'registrar':
+      case 'register':
           this.save(personal);
           break;
-      case 'modificar':
+      case 'edit':
           this.edit(personal);
           break;
       default:
