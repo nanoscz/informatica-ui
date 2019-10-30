@@ -12,7 +12,9 @@
         {{ solicitud.fecha | date }}
       </div>
       <div style="display: none;">
-        <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Check" (click)="check(solicitud.id)">
+        <a class="link-icon" *ngIf="solicitud.estado !== 3"
+          mat-icon-button matTooltipPosition="above" 
+          matTooltip="Check" (click)="check(solicitud.id)">
           <fa name="check"></fa>
         </a>
         <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Edit" (click)="edit(solicitud, i)">
