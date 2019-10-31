@@ -1,1 +1,38 @@
-<p>detail-solicitud works!</p>
+<div>
+	<div class="detail-header">
+		<div class="column-detail">
+			<strong> Solicitud Detail</strong>
+		</div>
+		<div class="column-detail">
+				<p>{{ data.solicitud.fecha | date }}</p>
+		</div>
+	</div>
+	<span class="ruta">
+			{{ data.solicitud.ruta }}
+	</span>
+	<br>
+	<div class="detail-content">
+		<div class="column-detail">
+			<span>Referencia</span>
+			<p>{{ data.solicitud.referencia | titlecase | capitalize }}</p>
+			<span>Cite</span>
+			<p>{{ data.solicitud.cite | uppercase }}</p>
+			<br>
+			<span>Remitente</span>
+			<p>{{ data.solicitud.remitente.nombre | titlecase }}</p>
+		</div>
+		<div class="column-detail">
+			<span>User</span>
+			<p>{{ data.solicitud.user.username}}</p>
+		</div>
+	</div>
+	<br>
+	<mat-divider></mat-divider>
+	<div class="actions">
+		<a mat-button>
+			<fa name="print"></fa>
+			Imprimir
+		</a>
+		<a mat-button mat-dialog-close>Cerrar</a>
+	</div>
+</div>

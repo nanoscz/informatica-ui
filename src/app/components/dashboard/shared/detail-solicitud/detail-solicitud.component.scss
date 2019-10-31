@@ -1,0 +1,33 @@
+p {
+	margin: 0;
+	padding: 0;
+}
+
+
+.detail-content, .detail-header {
+	display: flex; 
+}
+
+.ruta {
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+.detail-content {
+	span {
+		font-size: 12px;
+		color: #3e3e3e;
+		opacity: 0.5;
+	}
+}
+
+.column-detail {
+	flex: 1;
+	&:nth-child(2) {
+		text-align: end;
+	}
+}
+
+.actions {
+	margin-top: 8rem;
+}

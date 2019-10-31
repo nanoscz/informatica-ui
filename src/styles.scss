@@ -52,6 +52,10 @@ $informatica-theme: mat-light-theme($informatica-primary, $informatica-accent, $
   }
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .not-data {
   display: flex; 
   justify-content: center;
@@ -61,4 +65,9 @@ $informatica-theme: mat-light-theme($informatica-primary, $informatica-accent, $
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
 }

@@ -17,6 +17,10 @@
           matTooltip="Change Status" (click)="changeStatus(solicitud.estado, solicitud.id)">
           <fa name="check"></fa>
         </a>
+        <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="detail" 
+            (click)="detail(solicitud)">
+          <fa name="file-text"></fa>
+        </a>
         <a class="link-icon" mat-icon-button matTooltipPosition="above" matTooltip="Edit" (click)="edit(solicitud, i)">
           <fa name="pencil"></fa>
         </a>

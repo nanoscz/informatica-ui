@@ -6,6 +6,7 @@ import { ObserverService } from '../../services/observer.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { FormSolicitudComponent } from '../form-solicitud/form-solicitud.component';
+import { DetailSolicitudComponent } from '../detail-solicitud/detail-solicitud.component';
 
 @Component({
   selector: 'app-list-solicitud',
@@ -88,6 +89,18 @@ export class ListSolicitudComponent implements OnInit, OnDestroy {
     const estado = status + 1;
     await this.solicitudService.update({estado}, id).catch(this.handlerError.bind(this));
     this.getSolicitud();
+  }
+
+  detail(solicitud: any) {
+    this.dialog.open(DetailSolicitudComponent, {
+      width: '800px',
+      data: {
+        title: `show`,
+        action: 'show',
+        solicitud
+      },
+      disableClose: true
+    });
   }
 
   edit(solicitud: any, index: number) {

@@ -39,7 +39,7 @@ import { DetailSolicitudComponent } from './shared/detail-solicitud/detail-solic
     ZfillPipe,
     DetailSolicitudComponent
   ],
-  entryComponents: [FormPersonalComponent, FormSolicitudComponent],
+  entryComponents: [FormPersonalComponent, FormSolicitudComponent, DetailSolicitudComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
