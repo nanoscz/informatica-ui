@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   search(term: string) {
     this.observerService.sendData('search', term.trim());
   }
-  
+
   ngAfterViewInit() {
     this.classSidebar = this.sidebar.nativeElement.classList;
     const mainSize = this.main.nativeElement.offsetWidth;

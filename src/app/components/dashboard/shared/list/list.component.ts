@@ -42,7 +42,7 @@ export class ListComponent implements OnInit, OnDestroy {
         dataReceived => {
           switch (dataReceived.type) {
             case 'search':
-              this.setRange(0, true)
+              this.setRange(0, true);
               this.term = dataReceived.data;
               break;
             case 'pagination':

@@ -45,7 +45,6 @@ export class SolicitudComponent implements OnInit, OnDestroy {
 
     this.$observerSubscription = this.observerService.$observer
       .subscribe(dataReceived => {
-        console.log(dataReceived)
         if (dataReceived.type === 'range') {
           this.count = dataReceived.data.count;
           const range = dataReceived.data.range.split('-');
