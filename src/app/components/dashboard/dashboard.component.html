@@ -12,9 +12,14 @@
           <input #input (keyup.enter)="search(input.value)" type="text" placeholder="Buscar...">
         </div>
         <span class="example-spacer"></span>
-        <button class="example-icon" mat-icon-button>
+        <button class="example-icon" mat-icon-button [matMenuTriggerFor]="menuRight">
           <fa name="bars"></fa>
         </button>
+        <mat-menu #menuRight="matMenu">
+            <button mat-menu-item>Profile</button>
+            <button mat-menu-item>Settings</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+          </mat-menu>
       </mat-toolbar-row>
     </mat-toolbar>
   </header>

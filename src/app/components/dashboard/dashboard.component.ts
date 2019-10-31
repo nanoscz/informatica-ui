@@ -54,6 +54,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
+  logout() {
+    this.router.navigate(['login']);
+  }
+
   register(component: string) {
     const form = {
       solicitud: FormSolicitudComponent,
