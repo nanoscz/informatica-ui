@@ -1,23 +1,19 @@
 <div class="wrapper-container">
-    <!-- <div class="header-login">
-        <img [src]="'assets/logo-large.png'" alt="">
-    </div> -->
     <div class="content-login">
         <div class="card-login">
-            <!-- [formGroup]="form"  (ngSutmit)="login()" -->
-            <form class="form-login">
+            <form [formGroup]="form" (ngSubmit)="login()" class="form-login" >
                 <!-- <h2>Login</h2> -->
                 <div class="img-login">
                     <img [src]="'assets/logo-large.png'" alt="">
                 </div>
-                <input class="input-form" type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
+                <input class="input-form" type="text" placeholder="Username" formControlName="username">
+                <input type="password" placeholder="Password" formControlName="password">
                 <p>
                     {{ textInformation }}
                 </p>
                 <div class="form-actions" *ngIf="!loading">
                     <a (click)="register()" class="btn"> {{ btnRegister }}</a>
-                    <a (click)="login()" class="btn btn-login">{{ btnLogin }}</a>
+                    <button class="btn btn-login">{{ btnLogin }}</button>
                 </div>
                 <div class="box-center spinner-width" *ngIf="loading">
                     <mat-spinner [diameter]="30"></mat-spinner>
