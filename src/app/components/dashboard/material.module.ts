@@ -14,7 +14,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule, MatNativeDateModule } from '@angular/material';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const MODULES = [
   MatToolbarModule,

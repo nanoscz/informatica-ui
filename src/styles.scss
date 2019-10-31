@@ -56,3 +56,9 @@ $informatica-theme: mat-light-theme($informatica-primary, $informatica-accent, $
   display: flex; 
   justify-content: center;
 }
+
+.box-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
