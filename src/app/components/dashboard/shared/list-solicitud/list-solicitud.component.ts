@@ -8,11 +8,11 @@ import { MatDialog } from '@angular/material';
 import { FormSolicitudComponent } from '../form-solicitud/form-solicitud.component';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: 'app-list-solicitud',
+  templateUrl: './list-solicitud.component.html',
+  styleUrls: ['./list-solicitud.component.scss']
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class ListSolicitudComponent implements OnInit, OnDestroy {
   public $observerSubscription: Subscription;
   public tabsIndex: number;
   public dataReceived: Solicituds = {

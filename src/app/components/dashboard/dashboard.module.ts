@@ -15,7 +15,7 @@ import { FormPersonalComponent } from './shared/form-personal/form-personal.comp
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SearchComponent } from './shared/search/search.component';
 import { ServiciosPipe } from './pipes/servicios.pipe';
-import { ListComponent } from './shared/list/list.component';
+import { ListSolicitudComponent } from './shared/list-solicitud/list-solicitud.component';
 import { ZfillPipe } from './pipes/zfill.pipe';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { FormSolicitudComponent } from './shared/form-solicitud/form-solicitud.component';
@@ -27,15 +27,15 @@ import { FormRemitenteComponent } from './shared/form-remitente/form-remitente.c
     SolicitudComponent,
     ReportesComponent,
     PersonalComponent,
-    ExpandDirective,
     FormPersonalComponent,
-    SearchComponent,
-    ServiciosPipe,
-    ListComponent,
-    ZfillPipe,
-    CapitalizePipe,
+    ListSolicitudComponent,
     FormSolicitudComponent,
     FormRemitenteComponent,
+    ExpandDirective,
+    SearchComponent,
+    ServiciosPipe,
+    CapitalizePipe,
+    ZfillPipe
   ],
   entryComponents: [FormPersonalComponent, FormSolicitudComponent],
   imports: [

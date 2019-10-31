@@ -4,7 +4,7 @@ import { SolicitudComponent } from './components/solicitud/solicitud.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { PersonalComponent } from './components/personal/personal.component';
 import { DashboardComponent } from './dashboard.component';
-import { ListComponent } from './shared/list/list.component';
+import { ListSolicitudComponent } from './shared/list-solicitud/list-solicitud.component';
 
 const routes: Routes = [
   {
@@ -14,7 +14,7 @@ const routes: Routes = [
         path: 'solicitud', component: SolicitudComponent, data: { title: 'solicitud' },
         children: [
           {
-            path: ':id', component: ListComponent, data: { title: 'solicitud' }
+            path: ':id', component: ListSolicitudComponent, data: { title: 'solicitud' }
           },
           {
             path: '', redirectTo: '/dashboard/solicitud/1', pathMatch: 'full'
