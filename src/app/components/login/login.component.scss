@@ -61,6 +61,7 @@ p {
         display: flex;
         justify-content: space-between;
         .btn {
+            font-size: 14px;
             padding: 0.7rem;
             border-radius: 3px;
             &:hover {
@@ -77,5 +78,5 @@ p {
 }
 
 .spinner-width {
-    height: 41.6px;
+    height: 39.200px;
 }
