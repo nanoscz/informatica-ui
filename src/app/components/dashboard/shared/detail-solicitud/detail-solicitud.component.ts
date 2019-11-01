@@ -11,10 +11,10 @@ import { AsignarService } from '../../services/asignar.service';
 })
 export class DetailSolicitudComponent implements OnInit {
   public form: FormGroup;
-  public modeEdit: boolean = false;
-  public personals: any = []
-  public assignedPersonal: any = []
-  public textNotAssigned = 'No se le ha asignado un personal a esta solicitud.'
+  public modeEdit = false;
+  public personals: any = [];
+  public assignedPersonal: any = [];
+  public textNotAssigned = 'No se le ha asignado un personal a esta solicitud.';
   constructor(
     private asignarService: AsignarService,
     private perosnalService: PersonalService,
@@ -26,28 +26,28 @@ export class DetailSolicitudComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       personals: ''
-    })
-    this.getPersonal()
-    this.getAssignedPersonal()
+    });
+    this.getPersonal();
+    this.getAssignedPersonal();
   }
 
   getPersonal() {
     this.perosnalService.findAll('', '0-100')
       .then((dataReceived: any) => {
-        this.personals = dataReceived.personals
+        this.personals = dataReceived.personals;
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
 
-  getAssignedPersonal(){
+  getAssignedPersonal() {
     const solicitudId = this.data.solicitud.id;
     this.asignarService.findBySolicitud(solicitudId)
-      .then((dataReceived:any)=>{
-        this.assignedPersonal = dataReceived.assignedPersonal
-        const assigned = this.assignedPersonal.map((personal: any) => personal.id)
-        this.form.controls.personals.setValue(assigned)
+      .then((dataReceived: any) => {
+        this.assignedPersonal = dataReceived.assignedPersonal;
+        const assigned = this.assignedPersonal.map((personal: any) => personal.id);
+        this.form.controls.personals.setValue(assigned);
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
 
   changeMode() {
@@ -55,7 +55,7 @@ export class DetailSolicitudComponent implements OnInit {
   }
 
   filterData(firstArray, secondArray) {
-    return firstArray.filter((item:any) => secondArray.indexOf(item) == -1)
+    return firstArray.filter((item: any) => secondArray.indexOf(item) === -1);
   }
 
   formatData(firstArray) {
@@ -64,42 +64,42 @@ export class DetailSolicitudComponent implements OnInit {
       return {
         solicitudId,
         personalId
-      }
-    })
-    return asignar
+      };
+    });
+    return asignar;
   }
 
   submit() {
     const { personals } = this.form.value;
-    const assigned = this.assignedPersonal.map(item => item.id)
+    const assigned = this.assignedPersonal.map(item => item.id);
     if (personals.length === 0 && assigned.length === 0) {
-      return
+      return;
     }
-    let personalFilter = []
-    let asignar = []
-    if(personals.length >= assigned.length) {
-      personalFilter =  this.filterData(personals, assigned)
-      asignar = this.formatData(personalFilter)
+    let personalFilter = [];
+    let asignar = [];
+    if (personals.length >= assigned.length) {
+      personalFilter =  this.filterData(personals, assigned);
+      asignar = this.formatData(personalFilter);
       this.asignarService.create(asignar)
         .then(() => {
-          this.getAssignedPersonal()
-          this.changeMode()
+          this.getAssignedPersonal();
+          this.changeMode();
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
     } else {
-      let PromiseArray = []
-      personalFilter =  this.filterData(assigned, personals)
-      asignar = this.formatData(personalFilter)
+      const PromiseArray = [];
+      personalFilter =  this.filterData(assigned, personals);
+      asignar = this.formatData(personalFilter);
       for (const a of asignar) {
-        let deleteAssign = this.asignarService.delete(a.solicitudId, a.personalId)
-        PromiseArray.push(deleteAssign)
+        const deleteAssign = this.asignarService.delete(a.solicitudId, a.personalId);
+        PromiseArray.push(deleteAssign);
       }
       Promise.all(PromiseArray)
-        .then(()=> {
-          this.getAssignedPersonal()
-          this.changeMode()
+        .then(() => {
+          this.getAssignedPersonal();
+          this.changeMode();
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
     }
   }
 
