@@ -1,33 +1,56 @@
 <div>
 	<div class="detail-header">
 		<div class="column-detail">
-			<strong> Solicitud Detail</strong>
+			<strong>{{ data.solicitud.ruta | zfill }}</strong>
 		</div>
 		<div class="column-detail">
-				<p>{{ data.solicitud.fecha | date }}</p>
+			<p>{{ data.solicitud.fecha | date }}</p>
 		</div>
 	</div>
-	<span class="ruta">
-			{{ data.solicitud.ruta }}
-	</span>
-	<br>
+	<p class="solicitud-title">--- SOLICITUD DETAIL ---</p>
 	<div class="detail-content">
 		<div class="column-detail">
-			<span>Referencia</span>
+			<span>Referencia:</span>
 			<p>{{ data.solicitud.referencia | titlecase | capitalize }}</p>
-			<span>Cite</span>
+			<span>Cite:</span>
 			<p>{{ data.solicitud.cite | uppercase }}</p>
 			<br>
-			<span>Remitente</span>
+			<span>Remitente:</span>
 			<p>{{ data.solicitud.remitente.nombre | titlecase }}</p>
 		</div>
 		<div class="column-detail">
-			<span>User</span>
+			<span>Registrado por:</span>
 			<p>{{ data.solicitud.user.username}}</p>
 		</div>
 	</div>
 	<br>
 	<mat-divider></mat-divider>
+	<span *ngIf="!modeEdit">Asignado a:</span>
+
+	<div class="text-asign" *ngIf="!modeEdit">
+		<div class="assign-staff">
+			<span *ngFor="let personal of assignedPersonal"> {{ personal.fullName | titlecase }}. </span>
+			<span *ngIf="assignedPersonal.length === 0">{{ textNotAssigned }}</span>
+		</div>
+		<a class="icon-pencil pointer" (click)="changeMode()">
+			<fa name="pencil"></fa>
+		</a>
+	</div>
+	<div class="form-asignar" *ngIf="modeEdit">
+			<form  [formGroup]="form" (ngSubmit)="submit()" class="form">
+					<mat-form-field>
+						<!-- <mat-label>Asignar a</mat-label> -->
+						<mat-select multiple formControlName="personals">
+							<mat-option *ngFor="let p of personals" [value]="p.id">
+								{{p.nom}} {{p.app}} {{p.apm}}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<button class="pointer">
+							<fa name="save"></fa>
+					</button>
+				</form>
+	</div>
 	<div class="actions">
 		<a mat-button>
 			<fa name="print"></fa>
