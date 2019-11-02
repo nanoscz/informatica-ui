@@ -62,8 +62,16 @@ form {
 	.mat-form-field {
 		flex:1;
 	}
+	.actions-form {
+		display: flex;
+		align-items: center;
+		a {
+			margin-left: 1rem;
+		}
+	}
 	button {
 		margin-left: 1rem;
+		margin-top: 2px;
 		background-color: #fff;
 		border: none;
 		outline: none;

@@ -69,38 +69,35 @@ export class DetailSolicitudComponent implements OnInit {
     return asignar;
   }
 
-  submit() {
+  async submit() {
     const { personals } = this.form.value;
-    const assigned = this.assignedPersonal.map(item => item.id);
-    if (personals.length === 0 && assigned.length === 0) {
+    const assignedPersonals = this.assignedPersonal.map(item => item.id);
+    if (personals.length === 0 && assignedPersonals.length === 0) {
+      this.changeMode();
       return;
     }
-    let personalFilter = [];
-    let asignar = [];
-    if (personals.length >= assigned.length) {
-      personalFilter =  this.filterData(personals, assigned);
-      asignar = this.formatData(personalFilter);
-      this.asignarService.create(asignar)
-        .then(() => {
-          this.getAssignedPersonal();
-          this.changeMode();
-        })
-        .catch(err => console.log(err));
-    } else {
-      const PromiseArray = [];
-      personalFilter =  this.filterData(assigned, personals);
-      asignar = this.formatData(personalFilter);
-      for (const a of asignar) {
-        const deleteAssign = this.asignarService.delete(a.solicitudId, a.personalId);
-        PromiseArray.push(deleteAssign);
-      }
-      Promise.all(PromiseArray)
-        .then(() => {
-          this.getAssignedPersonal();
-          this.changeMode();
-        })
-        .catch(err => console.log(err));
+    let assigned = [];
+    let newAssigned = [];
+    assigned = this.formatData(assignedPersonals)
+    newAssigned = this.formatData(personals)
+    await this.deleteAssigned(assigned)
+    await this.saveAssigned(newAssigned)
+    this.getAssignedPersonal();
+    this.changeMode();
+  }
+
+  saveAssigned(assigned: any) {
+    return this.asignarService.create(assigned)
+  }
+
+  deleteAssigned(assigned: any) {
+    const PromiseArray = [];
+    for (const a of assigned) {
+      console.log(`eliminando al personal... ${a.personalId}`)
+      const deleteAssign = this.asignarService.delete(a.solicitudId, a.personalId);
+      PromiseArray.push(deleteAssign);
     }
+    return Promise.all(PromiseArray)
   }
 
 }

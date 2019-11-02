@@ -46,9 +46,14 @@
 							</mat-option>
 						</mat-select>
 					</mat-form-field>
-					<button class="pointer">
-							<fa name="save"></fa>
-					</button>
+					<div class="actions-form">
+						<button class="icon-pencil pointer">
+								<fa name="check"></fa>
+						</button>
+						<a class="icon-pencil pointer" (click)="changeMode()">
+							<fa name="times"></fa>
+						</a>
+					</div>
 				</form>
 	</div>
 	<div class="actions">
