@@ -39,6 +39,7 @@ export class SolicitudComponent implements OnInit, OnDestroy {
     private observerService: ObserverService,
     private router: Router
   ) {
+    this.offset = 0;
     const url = this.router.url.split('/');
     const tabsIndex = parseInt(url[url.length - 1], 10);
     this.setActiveTabs(tabsIndex);
@@ -62,6 +63,7 @@ export class SolicitudComponent implements OnInit, OnDestroy {
   ngOnInit() { }
 
   setPage(offset: number) {
+    console.log(offset)
     this.observerService.sendData('pagination', offset);
   }
 
