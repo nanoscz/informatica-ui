@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
       sistema para que te habilite la cuenta.`;
   public btnRegister = 'Crear cuenta';
   public btnLogin = 'Iniciar sesión';
+  public loginErrors: any;
   public loading = false;
   public form: FormGroup;
   constructor(
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    console.log('asdasd');
     if (this.form.invalid) {
       return;
     }
@@ -38,10 +40,12 @@ export class LoginComponent implements OnInit {
     this.userService.login(credential)
       .then((data: any) => {
         console.log(data);
+        this.loginErrors = null;
         this.router.navigate(['dashboard/solicitud']);
       })
       .catch(err => {
-        console.error(err);
+        const { message } =  err.error;
+        this.loginErrors = message;
         this.loading = false;
       });
   }
