@@ -1,0 +1,31 @@
+.header-logo {
+  margin: 1rem;
+  img{
+    max-width: 200px;
+    height: 40px;
+  }
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.body-content {
+  flex: 0 0 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #006b6d;
+  .number {
+    font-size: 150px;
+    font-weight: bold;
+  }
+  .message{
+    margin-left: 1rem;
+    font-size: 30px;
+    opacity: 0.8;
+    font-weight: bold;
+  }
+}
