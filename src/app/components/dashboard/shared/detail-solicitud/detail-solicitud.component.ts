@@ -78,26 +78,25 @@ export class DetailSolicitudComponent implements OnInit {
     }
     let assigned = [];
     let newAssigned = [];
-    assigned = this.formatData(assignedPersonals)
-    newAssigned = this.formatData(personals)
-    await this.deleteAssigned(assigned)
-    await this.saveAssigned(newAssigned)
+    assigned = this.formatData(assignedPersonals);
+    newAssigned = this.formatData(personals);
+    await this.deleteAssigned(assigned);
+    await this.saveAssigned(newAssigned);
     this.getAssignedPersonal();
     this.changeMode();
   }
 
   saveAssigned(assigned: any) {
-    return this.asignarService.create(assigned)
+    return this.asignarService.create(assigned);
   }
 
   deleteAssigned(assigned: any) {
     const PromiseArray = [];
     for (const a of assigned) {
-      console.log(`eliminando al personal... ${a.personalId}`)
       const deleteAssign = this.asignarService.delete(a.solicitudId, a.personalId);
       PromiseArray.push(deleteAssign);
     }
-    return Promise.all(PromiseArray)
+    return Promise.all(PromiseArray);
   }
 
 }

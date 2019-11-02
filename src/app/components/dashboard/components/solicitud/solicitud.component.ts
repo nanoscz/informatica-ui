@@ -63,7 +63,7 @@ export class SolicitudComponent implements OnInit, OnDestroy {
   ngOnInit() { }
 
   setPage(offset: number) {
-    console.log(offset)
+    console.log(offset);
     this.observerService.sendData('pagination', offset);
   }
 
