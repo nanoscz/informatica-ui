@@ -55,7 +55,12 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.router.navigate(['dashboard/solicitud']);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        setTimeout(() => {
+          this.loading = false;
+        }, 1200);
+      });
   }
 
   cancel() {

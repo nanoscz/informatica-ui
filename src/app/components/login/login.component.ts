@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,13 +18,14 @@ export class LoginComponent implements OnInit {
   public form: FormGroup;
   constructor(
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
     this.form =  this.fb.group({
-      username: [''],
-      password: ['']
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
@@ -33,10 +35,15 @@ export class LoginComponent implements OnInit {
     }
     const credential = Object.assign({}, this.form.value);
     this.loading = true;
-    setTimeout(() => {
-      console.log(credential);
-      this.router.navigate(['dashboard/solicitud']);
-    }, 3000);
+    this.userService.login(credential)
+      .then((data: any) => {
+        console.log(data);
+        this.router.navigate(['dashboard/solicitud']);
+      })
+      .catch(err => {
+        console.error(err);
+        this.loading = false;
+      });
   }
 
   register() {
