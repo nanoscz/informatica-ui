@@ -85,3 +85,13 @@ p {
 .spinner-width {
   height: 39.200px;
 }
+
+.input-errors {
+  border-color: red !important;
+  background: #fff !important;
+}
+
+.btn-opacity {
+  opacity: 0.6;
+  cursor: default !important;
+}

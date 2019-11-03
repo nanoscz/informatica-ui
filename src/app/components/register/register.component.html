@@ -2,19 +2,28 @@
   <div class="content-login">
       <div class="card-login">
           <form [formGroup]="form" (ngSubmit)="register()" class="form-login" >
-              <!-- <h2>Login</h2> -->
               <div class="img-login">
                   <img [src]="'assets/logo-large.png'" alt="">
-                  <p>{{ nameSystem }} {{ form.status }}</p>
+                  <p>{{ nameSystem }}</p>
               </div>
-              <input class="input-form" type="text" placeholder="Username" formControlName="username">
-              <input class="input-form" type="email" placeholder="Email" formControlName="email">
-              <input class="input-form" type="password" placeholder="Password" formControlName="password">
-              <input type="password" placeholder="Repeat Password" formControlName="confirmPassword">
+              <input class="input-form" type="text" placeholder="Username" formControlName="username"
+               [ngClass]="{'input-errors': (form.controls.username.errors && form.controls.username.dirty)}">
+               
+              <input class="input-form" type="email" placeholder="Email" formControlName="email"
+              [ngClass]="{'input-errors': (form.controls.email.errors && form.controls.email.dirty)}">
+
+              <input class="input-form" type="password" placeholder="Password" formControlName="password"
+              [ngClass]="{'input-errors': (form.controls.password.errors && form.controls.password.dirty)}">
+
+              <input type="password" placeholder="Repeat Password" formControlName="confirmPassword"
+              [ngClass]="{'input-errors': (form.controls.confirmPassword.errors && form.controls.confirmPassword.dirty)}">
               <p></p>
               <div class="form-actions" *ngIf="!loading">
                   <a (click)="cancel()" class="btn"> {{ btnCancel }}</a>
-                  <button class="btn btn-login">{{ bntRegister }}</button>
+                  <button class="btn btn-login" [ngClass]="{'btn-opacity': form.invalid}"
+                    [disabled]="form.valid ? null : 'disabled'">
+                      {{ bntRegister }}
+                  </button>
               </div>
               <div class="box-center spinner-width" *ngIf="loading">
                   <mat-spinner [diameter]="30"></mat-spinner>
