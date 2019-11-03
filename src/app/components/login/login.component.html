@@ -14,7 +14,7 @@
 					{{ textInformation }}
 				</p>
 				<div class="form-actions" *ngIf="!loading">
-					<a (click)="register()" class="btn"> {{ btnRegister }}</a>
+					<a (click)="register()" class="btn pointer"> {{ btnRegister }}</a>
 					<button class="btn btn-login" [ngClass]="{'btn-opacity': form.invalid}" 
 						[disabled]="form.valid ? null : 'disabled'">
 						{{ btnLogin }}
