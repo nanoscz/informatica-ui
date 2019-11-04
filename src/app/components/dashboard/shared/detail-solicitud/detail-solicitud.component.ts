@@ -4,6 +4,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { PersonalService } from '../../services/personal.service';
 import { AsignarService } from '../../services/asignar.service';
 
+/** Libraries PDF */
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-detail-solicitud',
   templateUrl: './detail-solicitud.component.html',
@@ -99,4 +104,148 @@ export class DetailSolicitudComponent implements OnInit {
     return Promise.all(PromiseArray);
   }
 
+  print() {
+    const textsg = `Seguimiento a realizar:`;
+    const date = new Date();
+    const year = date.getFullYear();
+    const solicitud = this.data.solicitud;
+    const dateSolicitud = solicitud.fecha;
+    const _ = `      `;
+    const docDefinition = {
+      content: [
+        {
+          style: 'titleSystem',
+          alignment: 'center',
+          text: 'CPS - SISTEMAS'
+        },
+        {
+          style: 'h1',
+          alignment: 'center',
+          bold: true,
+          text: 'CAJA PETROLERA DE SALUD'
+        },
+        {
+          style: 'h2',
+          alignment: 'center',
+          bold: true,
+          text: 'REGIONAL SANTA CRUZ'
+        },
+        {
+          style: 'h3',
+          alignment: 'center',
+          bold: true,
+          text: 'HOJA DE RUTA'
+        },
+        {
+          alignment: 'center',
+          table: {
+            widths: [30, '*', '*'],
+            body: [
+              ['N°', solicitud.ruta, dateSolicitud],
+            ]
+          }
+        },
+        {
+          alignment: 'left',
+          style: 'table',
+          table: {
+            widths: ['*', '*'],
+            heights: [70, '*'],
+            body: [
+              [`De : Ing. Rosmery Callejas Salguero
+                Jefe Unidad Tecnología Informática`, `A: Fernando Castillo Torrico`],
+              [`Atencion a nota Cite : ${solicitud.cite}`, `FECHA:`]
+            ]
+          }
+        },
+        {
+          alignment: 'left',
+          style: 'table',
+          table: {
+            heights: ['*', 10, 70, '*'],
+            widths: ['*'],
+            body: [
+              [`Referencia : ${solicitud.referencia}`],
+              [`Su gentil atención para:`],
+              [``],
+              ['Nota: Se adjunta nota de respaldo']
+            ]
+          }
+        },
+        {
+          style: 'subheader',
+          alignment: 'center',
+          text: 'FIRMA DE RECEPCION'
+        },
+        {
+          alignment: 'left',
+          style: 'table',
+          table: {
+            widths: ['*', '*', '*'],
+            heights: [70, 10],
+            body: [
+              ['', '', ''],
+              [`Fecha:${_}/${_}/${year}`, `Fecha:${_}/${_}/${year}`, `Fecha:${_}/${_}/${year}`]
+            ]
+          }
+        },
+        {
+          alignment: 'left',
+          style: 'tablesg',
+          table: {
+            widths: ['*', '*', '*'],
+            heights: [10, 70],
+            body: [
+              [`${textsg}${_}/${_}/${year}`, `${textsg}${_}/${_}/${year}`, `${textsg}${_}/${_}/${year}`],
+              ['', '', ''],
+            ]
+          }
+        },
+        {
+          style: 'autor',
+          text: `MJCV/ ${year}`
+        }
+      ],
+      styles: {
+        titleSystem: {
+          bold: true,
+          fontSize: 8,
+          margin: [0, 0, 0, 20]
+        },
+        h1: {
+          fontSize: 17,
+        },
+        h2: {
+          fontSize: 13,
+        },
+        h3: {
+          bold: true,
+          fontSize: 11,
+          margin: [0, 10, 0, 40]
+        },
+        title: {
+          fontSize: 12,
+        },
+        autor: {
+          fontSize: 12,
+          bold: true,
+          margin: [0, 70, 0, 0]
+        },
+        table: {
+          fontSize: 10,
+          margin: [0, 10, 0, 0]
+        },
+        tablesg: {
+          fontSize: 9,
+          margin: [0, 10, 0, 0]
+        },
+        subheader: {
+          fontSize: 12,
+          bold: true,
+          margin: [0, 20, 0, 5]
+        },
+      }
+    };
+    pdfMake.createPdf(docDefinition).open();
+  }
 }
