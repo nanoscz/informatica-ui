@@ -45,7 +45,7 @@ export class FormSolicitudComponent implements OnInit {
             .catch(this.handlerError.bind(this));
         }
       });
-    this.txtSubmit = this.data.action === 'registrar' ? 'Guardar' : 'Modificar';
+    this.txtSubmit = this.data.action === 'register' ? 'Guardar' : 'Modificar';
     this.setDate();
     if (this.data.action === 'edit') {
       this.form.setValue({

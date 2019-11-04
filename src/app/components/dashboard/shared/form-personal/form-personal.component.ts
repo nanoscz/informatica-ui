@@ -33,7 +33,7 @@ export class FormPersonalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.txtSubmit = this.data.action === 'registrar' ?  'Guardar' : 'Modificar';
+    this.txtSubmit = this.data.action === 'register' ?  'Guardar' : 'Modificar';
     this.form = this.fb.group({
       nom: ['', [Validators.required]],
       app: ['', [Validators.required]],
