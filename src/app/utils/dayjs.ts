@@ -3,10 +3,13 @@ import localeES from 'dayjs/locale/es';
 dayjs.locale(localeES);
 
 
-export function formatData(value: any, type: string) {
+export function formatData(value: any, type: string = 'normal') {
   const date = dayjs(value);
   let formatDate = null;
   switch (type) {
+    case 'normal':
+      formatDate = date.format('DD/MM/YYYY');
+      break;
     case 'literal':
       const format = date.format(`D MMMM YYYY`);
       const chunk = format.split(' ');

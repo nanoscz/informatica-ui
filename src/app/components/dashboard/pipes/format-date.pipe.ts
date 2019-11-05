@@ -6,7 +6,7 @@ import { formatData } from '../../../utils/dayjs';
 })
 export class FormatDatePipe implements PipeTransform {
 
-  transform(value: any, type: string = 'literal'): any {
+  transform(value: any, type: string = 'normal'): any {
     return formatData(value, type);
   }
 
