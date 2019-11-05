@@ -3,25 +3,25 @@ import localeES from 'dayjs/locale/es';
 dayjs.locale(localeES);
 
 
-export function formatData(value: any, type: string = 'normal') {
+export function formatDate(value: any, type: string = 'normal') {
   const date = dayjs(value);
-  let formatDate = null;
+  let formatData = null;
   switch (type) {
     case 'normal':
-      formatDate = date.format('DD/MM/YYYY');
+      formatData = date.format('DD/MM/YYYY');
       break;
     case 'literal':
       const format = date.format(`D MMMM YYYY`);
       const chunk = format.split(' ');
-      formatDate = `${chunk[0]} de ${chunk[1].toLowerCase()} del ${chunk[2]}`;
+      formatData = `${chunk[0]} de ${chunk[1].toLowerCase()} del ${chunk[2]}`;
       break;
     case 'partial':
-      formatDate = date.format('D MMM.');
+      formatData = date.format('D MMM.');
       break;
     default:
-      formatDate = undefined;
+      formatData = undefined;
       break;
   }
 
-  return formatDate;
+  return formatData;
 }
