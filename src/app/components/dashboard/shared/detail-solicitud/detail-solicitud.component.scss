@@ -13,6 +13,16 @@ p {
 .detail-content, .detail-header {
 	display: flex; 
 }
+.detail-header {
+	justify-content: space-between;
+}
+
+.detail-header h3 {
+	margin-top: 0;
+	margin-bottom: 0;
+	font-weight: bold;
+	letter-spacing: 0.3;
+}
 
 .detail-content {
 	.column-detail:nth-child(1) {
@@ -21,8 +31,9 @@ p {
 }
 
 .ruta {
-	display: block;
-	margin-bottom: 0.5rem;
+	color: #000;
+	opacity: 1;
+	font-size: 1rem;
 }
 
 span {

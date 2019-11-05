@@ -3,11 +3,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PersonalService } from '../../services/personal.service';
 import { AsignarService } from '../../services/asignar.service';
-
 /** Libraries PDF */
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+/** format date */
+import { formatDate } from '../../../../utils/format-date';
+/** format text */
+import { TitleCase, UpperCase } from 'src/app/utils/format-text';
 
 @Component({
   selector: 'app-detail-solicitud',
@@ -104,12 +107,18 @@ export class DetailSolicitudComponent implements OnInit {
     return Promise.all(PromiseArray);
   }
 
+  getPersonalAssignedLiteral() {
+    let personal = this.assignedPersonal.map(item => TitleCase(item.fullName));
+    personal = `${personal.join(', ')}.`;
+    return personal;
+  }
+
   print() {
     const textsg = `Seguimiento a realizar:`;
     const date = new Date();
     const year = date.getFullYear();
     const solicitud = this.data.solicitud;
-    const dateSolicitud = solicitud.fecha;
+    const dateSolicitud = formatDate(solicitud.fecha);
     const _ = `      `;
     const docDefinition = {
       content: [
@@ -152,9 +161,10 @@ export class DetailSolicitudComponent implements OnInit {
             widths: ['*', '*'],
             heights: [70, '*'],
             body: [
-              [`De : Ing. Rosmery Callejas Salguero
-                Jefe Unidad Tecnología Informática`, `A: Fernando Castillo Torrico`],
-              [`Atencion a nota Cite : ${solicitud.cite}`, `FECHA:`]
+              [`De: Ing. Rosmery Callejas Salguero
+                ${UpperCase('Jefe Unidad Tecnología Informática')}`,
+                `A: ${this.getPersonalAssignedLiteral()}`],
+              [`Atencion a nota Cite : ${UpperCase(solicitud.cite)}`, `FECHA:`]
             ]
           }
         },
@@ -165,7 +175,7 @@ export class DetailSolicitudComponent implements OnInit {
             heights: ['*', 10, 70, '*'],
             widths: ['*'],
             body: [
-              [`Referencia : ${solicitud.referencia}`],
+              [`Referencia : ${UpperCase(solicitud.referencia)}`],
               [`Su gentil atención para:`],
               [``],
               ['Nota: Se adjunta nota de respaldo']
@@ -204,6 +214,11 @@ export class DetailSolicitudComponent implements OnInit {
         {
           style: 'autor',
           text: `MJCV/ ${year}`
+        },
+        {
+          style: 'fecha',
+          alignment: 'center',
+          text: `Santa Cruz, ${formatDate(new Date(), 'literal')}`
         }
       ],
       styles: {
@@ -229,7 +244,7 @@ export class DetailSolicitudComponent implements OnInit {
         autor: {
           fontSize: 12,
           bold: true,
-          margin: [0, 70, 0, 0]
+          margin: [0, 40, 0, 0]
         },
         table: {
           fontSize: 10,
@@ -244,6 +259,9 @@ export class DetailSolicitudComponent implements OnInit {
           bold: true,
           margin: [0, 20, 0, 5]
         },
+        fecha: {
+          fontSize: 10
+        }
       }
     };
     pdfMake.createPdf(docDefinition).open();

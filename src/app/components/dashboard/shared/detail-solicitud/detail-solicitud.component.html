@@ -1,20 +1,20 @@
 <div>
 	<div class="detail-header">
-		<div class="column-detail">
-			<strong>{{ data.solicitud.ruta | zfill }}</strong>
+		<div>
+			<h3>DETALLE DE SOLICITUD</h3>
+			<span class="ruta">{{ data.solicitud.ruta | zfill }}</span>
 		</div>
-		<div class="column-detail">
-			<p>{{ data.solicitud.fecha | date }}</p>
+		<div>
+			<p>{{ data.solicitud.fecha | formatDate }}</p>
 		</div>
 	</div>
-	<p class="solicitud-title">--- SOLICITUD DETAIL ---</p>
+	<br>
 	<div class="detail-content">
 		<div class="column-detail">
 			<span>Referencia:</span>
 			<p>{{ data.solicitud.referencia | titlecase | capitalize }}</p>
 			<span>Cite:</span>
 			<p>{{ data.solicitud.cite | uppercase }}</p>
-			<br>
 			<span>Remitente:</span>
 			<p>{{ data.solicitud.remitente.nombre | titlecase }}</p>
 		</div>
