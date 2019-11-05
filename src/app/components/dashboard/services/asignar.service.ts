@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { handlerErrorPromise } from '../../../errors/error';
+import { handlerErrorPromise } from '../../../utils/handler-errors';
 
 @Injectable({
   providedIn: 'root'
