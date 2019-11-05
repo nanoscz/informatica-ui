@@ -21,6 +21,7 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { FormSolicitudComponent } from './shared/form-solicitud/form-solicitud.component';
 import { FormRemitenteComponent } from './shared/form-remitente/form-remitente.component';
 import { DetailSolicitudComponent } from './shared/detail-solicitud/detail-solicitud.component';
+import { FormatDatePipe } from './pipes/format-date.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DetailSolicitudComponent } from './shared/detail-solicitud/detail-solic
     ServiciosPipe,
     CapitalizePipe,
     ZfillPipe,
-    DetailSolicitudComponent
+    DetailSolicitudComponent,
+    FormatDatePipe
   ],
   entryComponents: [FormPersonalComponent, FormSolicitudComponent, DetailSolicitudComponent],
   imports: [
