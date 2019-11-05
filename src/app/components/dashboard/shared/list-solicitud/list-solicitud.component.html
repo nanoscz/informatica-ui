@@ -9,7 +9,7 @@
     </div>
     <div class="date-text">
       <div>
-        {{ solicitud.fecha | date }}
+        {{ solicitud.fecha | formatDate : 'partial' }}
       </div>
       <div style="display: none;">
         <a class="link-icon" *ngIf="solicitud.estado !== 3"
