@@ -30,7 +30,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' },],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
