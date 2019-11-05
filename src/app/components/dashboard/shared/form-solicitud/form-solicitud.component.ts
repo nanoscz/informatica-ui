@@ -84,13 +84,13 @@ export class FormSolicitudComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
+    this.loading = true;
     const solicitud = Object.assign({}, this.form.value);
     solicitud.remitenteId = solicitud.remitente.id;
-    solicitud.userId = 1;
-    solicitud.estado = 1;
-    this.loading = true;
     switch (this.data.action) {
       case 'register':
+        solicitud.userId = 1;
+        solicitud.estado = 1;
         this.save(solicitud);
         break;
       case 'edit':
