@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Capitalize } from 'src/app/utils/format-text';
 
 @Pipe({
   name: 'capitalize'
@@ -6,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CapitalizePipe implements PipeTransform {
 
   transform(value: any, ...args: any[]): any {
-    return (!!value) ? value.charAt(0).toUpperCase() + value.substr(1).toLowerCase() : '';
+    return Capitalize(value);
   }
 
 }
