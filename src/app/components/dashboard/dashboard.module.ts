@@ -23,6 +23,8 @@ import { FormRemitenteComponent } from './shared/form-remitente/form-remitente.c
 import { DetailSolicitudComponent } from './shared/detail-solicitud/detail-solicitud.component';
 import { FormatDatePipe } from './pipes/format-date.pipe';
 import { SliceTextPipe } from './pipes/slice-text.pipe';
+import { SettingsComponent } from './components/settings/settings.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { SliceTextPipe } from './pipes/slice-text.pipe';
     CapitalizePipe,
     ZfillPipe,
     DetailSolicitudComponent,
+    SettingsComponent,
+    ProfileComponent,
     FormatDatePipe,
     SliceTextPipe
   ],

@@ -16,9 +16,9 @@
           <fa name="bars"></fa>
         </button>
         <mat-menu #menuRight="matMenu">
-            <button mat-menu-item>Profile</button>
-            <button mat-menu-item>Settings</button>
-            <button mat-menu-item (click)="logout()">Logout</button>
+            <a mat-menu-item [routerLink]="'profile'">Profile</a>
+            <a mat-menu-item [routerLink]="'settings'">Settings</a>
+            <a mat-menu-item (click)="logout()">Logout</a>
           </mat-menu>
       </mat-toolbar-row>
     </mat-toolbar>
