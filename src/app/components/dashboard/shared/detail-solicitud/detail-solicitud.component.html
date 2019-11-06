@@ -5,7 +5,7 @@
 			<span class="ruta">{{ data.solicitud.ruta | zfill }}</span>
 		</div>
 		<div>
-			<p>{{ data.solicitud.fecha | formatDate }}</p>
+			<p>{{ data.solicitud.fecha | formatDate: 'literal' }}</p>
 		</div>
 	</div>
 	<br>
@@ -13,8 +13,10 @@
 		<div class="column-detail">
 			<span>Referencia:</span>
 			<p>{{ data.solicitud.referencia | titlecase | capitalize }}</p>
+			<br>
 			<span>Cite:</span>
 			<p>{{ data.solicitud.cite | uppercase }}</p>
+			<br>
 			<span>Remitente:</span>
 			<p>{{ data.solicitud.remitente.nombre | titlecase }}</p>
 		</div>
