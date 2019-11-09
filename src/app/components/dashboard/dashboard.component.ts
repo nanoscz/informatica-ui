@@ -6,6 +6,7 @@ import { ObserverService } from './services/observer.service';
 import { FormPersonalComponent } from './shared/form-personal/form-personal.component';
 import { FormSolicitudComponent } from './shared/form-solicitud/form-solicitud.component';
 import { SolicitudService } from './services/solicitud.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +25,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog,
     private router: Router,
     private observerService: ObserverService,
-    private solicitudService: SolicitudService
+    private solicitudService: SolicitudService,
+    private storageService: StorageService
   ) {
     this.menus = [
       {
@@ -58,6 +60,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.router.navigate(['login']);
+    this.storageService.clear();
   }
 
   register(component: string) {
