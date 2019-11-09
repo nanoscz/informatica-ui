@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { RemitenteService } from '../../services/remitente.service';
 import { SolicitudService } from '../../services/solicitud.service';
 import { ObserverService } from '../../services/observer.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-form-solicitud',
@@ -23,6 +24,7 @@ export class FormSolicitudComponent implements OnInit {
     private remitenteService: RemitenteService,
     private solicitudServicie: SolicitudService,
     private observerServicio: ObserverService,
+    private storageService: StorageService,
     public dialogRef: MatDialogRef<FormSolicitudComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
@@ -86,18 +88,19 @@ export class FormSolicitudComponent implements OnInit {
     }
     this.loading = true;
     const solicitud = Object.assign({}, this.form.value);
+
     solicitud.remitenteId = solicitud.remitente.id;
     switch (this.data.action) {
       case 'register':
-        solicitud.userId = 1;
         solicitud.estado = 1;
+        solicitud.userId = this.storageService.getData('token').id;
         this.save(solicitud);
         break;
       case 'edit':
         this.edit(solicitud);
         break;
       default:
-        console.log('Fatal Error');
+        console.error('Fatal Error');
         break;
     }
   }
