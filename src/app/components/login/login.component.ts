@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.userService.login(credential)
       .then((data: any) => {
-        console.log(data);
+        this.storageService.setData('token', JSON.stringify(data));
         this.loginErrors = null;
         this.router.navigate(['dashboard/solicitud']);
       })
