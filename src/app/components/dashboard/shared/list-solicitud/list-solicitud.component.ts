@@ -23,7 +23,7 @@ export class ListSolicitudComponent implements OnInit, OnDestroy {
   public offset = 0;
   public limit = 10;
   public range: string;
-  public term = '';
+  public term: string;
   constructor(
     private solicitudService: SolicitudService,
     private activatedRoute: ActivatedRoute,
@@ -48,8 +48,6 @@ export class ListSolicitudComponent implements OnInit, OnDestroy {
               break;
             case 'pagination':
               this.setRange(dataReceived.data);
-              break;
-           default:
               break;
           }
           if (dataReceived.type !== 'range') {
@@ -85,9 +83,9 @@ export class ListSolicitudComponent implements OnInit, OnDestroy {
       );
   }
 
-  async changeStatus(status: number , id: number) {
+  async changeStatus(status: number, id: number) {
     const estado = status + 1;
-    await this.solicitudService.update({estado}, id).catch(this.handlerError.bind(this));
+    await this.solicitudService.update({ estado }, id).catch(this.handlerError.bind(this));
     this.getSolicitud();
   }
 

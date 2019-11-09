@@ -6,15 +6,18 @@ import { handlerErrorPromise } from '../../../utils/handler-errors';
   providedIn: 'root'
 })
 export class SolicitudService {
-  public baseUrl = 'http://localhost:3000/v1';
+  private baseUrl = 'http://localhost:3000/v1';
+  private range = '0-10';
+  public term = '';
   constructor(private http: HttpClient) {
     this.baseUrl = `${this.baseUrl}/solicitud`;
   }
 
-  findAll(type: number, search: string = '', range: string = '0-50') {
+  findAll(type: number, search: string, range: string = this.range) {
+    search = search || this.term;
     const params = new HttpParams()
-      .set('search', search)
-      .set('range', range);
+    .set('search', search)
+    .set('range', range);
     return this.http.get(`${this.baseUrl}/${type}/all`, { params });
   }
 

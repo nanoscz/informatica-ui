@@ -5,6 +5,7 @@ import { ObserverService } from './services/observer.service';
 
 import { FormPersonalComponent } from './shared/form-personal/form-personal.component';
 import { FormSolicitudComponent } from './shared/form-solicitud/form-solicitud.component';
+import { SolicitudService } from './services/solicitud.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private observerService: ObserverService
+    private observerService: ObserverService,
+    private solicitudService: SolicitudService
   ) {
     this.menus = [
       {
@@ -80,6 +82,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   search(term: string) {
+    if (!this.router.url.includes('solicitud')) {
+      this.router.navigate(['dashboard/solicitud']);
+      this.solicitudService.term = term.trim();
+    }
+    if (term.length === 0) {
+      this.solicitudService.term = term.trim();
+    }
     this.observerService.sendData('search', term.trim());
   }
 
