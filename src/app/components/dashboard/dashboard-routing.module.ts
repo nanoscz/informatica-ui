@@ -24,13 +24,13 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'profile', component: ProfileComponent, data: { title: 'Profile' }
+        path: 'profile', component: ProfileComponent
       },
       {
-        path: 'settings', component: SettingsComponent, data: { title: 'Settings' }
+        path: 'settings', component: SettingsComponent
       },
       {
-        path: 'reportes', component: ReportesComponent, data: { title: 'reportes' }
+        path: 'reportes', component: ReportesComponent, data: { title: 'Reportes' }
       },
       {
         path: 'personal', component: PersonalComponent, data: { title: 'personal' }
