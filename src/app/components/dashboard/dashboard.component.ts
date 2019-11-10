@@ -17,8 +17,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   @ViewChild('sidebar', { static: false }) sidebar: ElementRef;
   @ViewChild('main', { static: false }) main: ElementRef;
-  title = 'Informatica';
-  text = '';
+  title: string;
+  text: string;
   menus: any;
   classSidebar: any;
   constructor(
@@ -28,29 +28,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private solicitudService: SolicitudService,
     private storageService: StorageService
   ) {
-    this.menus = [
-      {
-        title: 'Hoja de rutas',
-        icon: 'folder-open',
-        submenu: [],
-        links: 'solicitud'
-      },
-      {
-        title: 'Reportes',
-        icon: 'pie-chart',
-        submenu: [],
-        links: 'reportes'
-      },
-      {
-        title: 'Personal',
-        icon: 'users',
-        submenu: [],
-        links: 'personal'
-      }
-    ];
+    /** Settings Storage */
+    const settings: any = this.storageService.getData('settings');
+    this.title = settings.title;
+    this.menus = settings.menus;
+
     this.router.events.subscribe((event: ActivationEnd) => {
       if (event instanceof ActivationEnd && event.snapshot.firstChild == null) {
-        this.text = event.snapshot.data.title;
+        if (event.snapshot.data.title) {
+          this.text = event.snapshot.data.title;
+        } else {
+          this.text = settings.pages.solicitud.title;
+        }
       }
     });
   }
