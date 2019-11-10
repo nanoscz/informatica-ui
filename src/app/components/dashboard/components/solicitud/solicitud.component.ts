@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ObserverService } from '../../services/observer.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-solicitud',
@@ -9,37 +10,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./solicitud.component.scss']
 })
 export class SolicitudComponent implements OnInit, OnDestroy {
-  public title = 'Solicitud';
-  public tabs = [
-    {
-      id: 1,
-      isActive: true,
-      name: 'Pendientes',
-      icon: 'tags'
-    },
-    {
-      id: 2,
-      isActive: false,
-      name: 'En progreso',
-      icon: 'cogs'
-    },
-    {
-      id: 3,
-      isActive: false,
-      name: 'Realizadas',
-      icon: 'check-circle'
-    }
-  ];
+  public title: string;
+  public tabs: any;
   public offset: number;
+  public limit: number;
   public total: number;
   public count: number;
   public range: string;
   public $observerSubscription: Subscription;
   constructor(
     private observerService: ObserverService,
+    private storageService: StorageService,
     private router: Router
   ) {
-    this.offset = 0;
+    /** Settings Storage */
+    const settings: any = this.storageService.getData('settings');
+    this.title = settings.pages.solicitud.title;
+    this.tabs = settings.pages.solicitud.tabs;
+    this.offset = settings.pagination.offset;
+    this.limit = settings.pagination.limit;
+    /** Set tabsIndex */
     const url = this.router.url.split('/');
     const tabsIndex = parseInt(url[url.length - 1], 10);
     this.setActiveTabs(tabsIndex);
@@ -63,7 +53,6 @@ export class SolicitudComponent implements OnInit, OnDestroy {
   ngOnInit() { }
 
   setPage(offset: number) {
-    console.log(offset);
     this.observerService.sendData('pagination', offset);
   }
 

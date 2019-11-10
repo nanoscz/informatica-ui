@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { FormSolicitudComponent } from '../form-solicitud/form-solicitud.component';
 import { DetailSolicitudComponent } from '../detail-solicitud/detail-solicitud.component';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-list-solicitud',
@@ -16,20 +17,27 @@ import { DetailSolicitudComponent } from '../detail-solicitud/detail-solicitud.c
 export class ListSolicitudComponent implements OnInit, OnDestroy {
   public $observerSubscription: Subscription;
   public tabsIndex: number;
+  public notData = 'Not data found';
   public dataReceived: Solicituds = {
     solicituds: [],
     count: 0
   };
-  public offset = 0;
-  public limit = 10;
+  public offset: number;
+  public limit: number;
   public range: string;
   public term: string;
   constructor(
     private solicitudService: SolicitudService,
     private activatedRoute: ActivatedRoute,
     private observerService: ObserverService,
+    private storageService: StorageService,
     public dialog: MatDialog
   ) {
+    /** Settings Storage */
+    const settings: any = this.storageService.getData('settings');
+    this.offset = settings.pagination.offset;
+    this.limit = settings.pagination.limit;
+
     this.activatedRoute.params.subscribe(async params => {
       this.tabsIndex = params.id;
       this.setRange(0);

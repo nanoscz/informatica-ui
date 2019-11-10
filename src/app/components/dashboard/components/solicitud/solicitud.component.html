@@ -1,14 +1,14 @@
 <mat-card>
   <mat-card-content>
     <div class="card-header">
-      <h3> Solicitud </h3>
+      <h3> {{title}} </h3>
       <div>
         <span>{{ range }} de {{ count }}</span>
-        <button class="link-icon" mat-icon-button (click)="setPage(-10)" 
+        <button class="link-icon" mat-icon-button (click)="setPage(-limit)" 
           [disabled]="offset === 0 ? 'disabled': null">
           <fa name="chevron-left"></fa>
         </button>
-        <button class="link-icon" mat-icon-button (click)="setPage(+10)"
+        <button class="link-icon" mat-icon-button (click)="setPage(+limit)"
         [disabled]="total >= count ? 'disabled': null">
           <fa name="chevron-right"></fa>
         </button>
