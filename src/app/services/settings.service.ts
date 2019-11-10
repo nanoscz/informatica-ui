@@ -9,6 +9,27 @@ export class SettingsService {
 
   getDefaultSettings() {
     return {
+      title: 'Informatica',
+      menus: [
+        {
+          title: 'Hoja de rutas',
+          icon: 'folder-open',
+          submenu: [],
+          links: 'solicitud'
+        },
+        {
+          title: 'Reportes',
+          icon: 'pie-chart',
+          submenu: [],
+          links: 'reportes'
+        },
+        {
+          title: 'Personal',
+          icon: 'users',
+          submenu: [],
+          links: 'personal'
+        }
+      ],
       pages: {
         solicitud: {
           title: 'Solicitud',
