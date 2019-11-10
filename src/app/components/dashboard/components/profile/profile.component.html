@@ -1,1 +1,44 @@
-<p>profile works!</p>
+<mat-card class="main-profile">
+  <div class="profile-header">
+    <h2>Información personal</h2>
+    <span>Información básica, como tu nombre y foto, que usas para el sistema de hoja ruta.</span>
+  </div>
+  <div class="mgb-3"></div>
+  <div class="profile-content">
+    <h3>Perfil</h3>
+    <span>Es posible que cierta información sea visible para otras personas que utilizen el sistema de hoja de ruta.</span>
+    <div class="mgb-3"></div>
+    <div class="profile-info">
+      <p>photo</p>
+      <p>Agrega una foto para personalizar tu cuenta.</p>
+      <div class="info-img">
+        <img class="pointer" [src]="'assets/user.png'" alt="">
+      </div>
+    </div>
+    <div class="profile-info">
+      <p>username</p>
+      <p>{{data.username}}</p>
+      <fa name="angle-right"></fa>
+    </div>
+    <div class="profile-info">
+      <p>email</p>
+      <p>{{data.email}}</p>
+      <fa name="angle-right"></fa>
+    </div>
+    <div class="profile-info">
+      <p>roles</p>
+      <p>{{data.roles}}</p>
+      <fa name="angle-right"></fa>
+    </div>
+    <div class="profile-info">
+      <p>locked</p>
+      <p>{{data.locked}}</p>
+      <fa name="angle-right"></fa>
+    </div>
+    <div class="profile-info">
+      <p>last Login</p>
+      <p>{{data.lastLogin}}</p>
+      <fa name="angle-right"></fa>
+    </div>
+  </div>
+</mat-card>

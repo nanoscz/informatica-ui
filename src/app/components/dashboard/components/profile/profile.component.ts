@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor() { }
+  public data: any;
+  constructor(
+    private storageService: StorageService
+  ) { }
 
   ngOnInit() {
+    this.data = this.storageService.getData('token');
   }
 
 }
