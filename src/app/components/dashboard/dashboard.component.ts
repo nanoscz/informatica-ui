@@ -53,11 +53,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   register(component: string) {
-    const form = {
-      solicitud: FormSolicitudComponent,
-      personal: FormPersonalComponent
-    };
-    const formComponent = form[component];
+    let formComponent = null;
+    switch (component) {
+      case 'personal':
+        formComponent = FormPersonalComponent;
+        break;
+      default:
+          formComponent = FormSolicitudComponent;
+          break;
+    }
     if (formComponent) {
       const dialogRef = this.dialog.open(formComponent, {
         width: '400px',

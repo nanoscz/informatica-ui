@@ -26,7 +26,7 @@ const routes: Routes = [
         path: 'profile', component: ProfileComponent
       },
       {
-        path: 'reportes', component: ReportesComponent, data: { title: 'Reportes' }
+        path: 'reportes', component: ReportesComponent
       },
       {
         path: 'personal', component: PersonalComponent, data: { title: 'personal' }
