@@ -158,9 +158,8 @@ svg {
     cursor: pointer;
   }
   li {
-    padding-left: 1rem;
     &:hover {
-      background-color: #eee;
+      background-color: rgb(238, 238, 238, 0.5);
       border-radius: 0 15px 15px 0;
     }
   }
@@ -172,6 +171,7 @@ svg {
     padding:0.5rem;
     display: flex;
     span:nth-child(1) {
+      margin-left: 1rem;
       width: 1rem;
     }
     span:nth-child(2) {
@@ -184,9 +184,6 @@ svg {
     .submenu {
       padding: 0;
       display: none;
-      a {
-        padding-left: 1.5rem;
-      }
     }
     .active {
       + .submenu {
@@ -198,4 +195,8 @@ svg {
 
 .menu-active {
   color: #009688 !important;
+  &:focus {
+    background-color: rgba(12, 170, 154, 0.1);
+    border-radius: 0 15px 15px 0;
+  }
 }
