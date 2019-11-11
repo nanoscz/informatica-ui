@@ -6,7 +6,6 @@ import { PersonalComponent } from './components/personal/personal.component';
 import { DashboardComponent } from './dashboard.component';
 import { ListSolicitudComponent } from './shared/list-solicitud/list-solicitud.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { SettingsComponent } from './components/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -25,9 +24,6 @@ const routes: Routes = [
       },
       {
         path: 'profile', component: ProfileComponent
-      },
-      {
-        path: 'settings', component: SettingsComponent
       },
       {
         path: 'reportes', component: ReportesComponent, data: { title: 'Reportes' }
