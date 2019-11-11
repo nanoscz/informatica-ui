@@ -26,6 +26,7 @@ export class ListSolicitudComponent implements OnInit, OnDestroy {
   public limit: number;
   public range: string;
   public term: string;
+  private settings: any;
   constructor(
     private solicitudService: SolicitudService,
     private activatedRoute: ActivatedRoute,
@@ -34,9 +35,9 @@ export class ListSolicitudComponent implements OnInit, OnDestroy {
     public dialog: MatDialog
   ) {
     /** Settings Storage */
-    const settings: any = this.storageService.getData('settings');
-    this.offset = settings.pagination.offset;
-    this.limit = settings.pagination.limit;
+    this.settings = this.storageService.getData('settings');
+    this.offset = this.settings.pagination.offset;
+    this.limit = this.settings.pagination.limit;
 
     this.activatedRoute.params.subscribe(async params => {
       this.tabsIndex = params.id;
@@ -68,8 +69,8 @@ export class ListSolicitudComponent implements OnInit, OnDestroy {
 
   setRange(offset: number, reset: boolean = false) {
     if (reset) {
-      this.offset = 0;
-      this.limit = 10;
+      this.offset = this.settings.pagination.offset;
+      this.limit = this.settings.pagination.limit;
     } else {
       this.offset += offset;
     }
