@@ -40,7 +40,7 @@ export class FormPersonalComponent implements OnInit {
       apm: ['', [Validators.required]],
       servicio: ['', [Validators.required]]
     });
-    if (this.data.action === 'modificar') {
+    if (this.data.action === 'edit') {
       this.form.setValue({
         nom: this.data.personal.nom,
         app: this.data.personal.app,
