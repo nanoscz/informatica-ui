@@ -8,16 +8,16 @@
     <h3>Perfil</h3>
     <span>Es posible que cierta información sea visible para otras personas que utilizen el sistema de hoja de ruta.</span>
     <div class="mgb-3"></div>
-    <div class="profile-info">
+    <div (click)="toUpload()" class="profile-info">
       <p>photo</p>
       <p>Agrega una foto para personalizar tu cuenta.</p>
       <div class="info-img">
-        <img class="pointer" [src]="'assets/user.png'" alt="">
+        <img class="pointer" [src]="data.image|image" alt="Image Profile">
       </div>
     </div>
     <div class="profile-info">
       <p>username</p>
-      <p>{{data.username}}</p>
+      <p>{{data.username }}</p>
       <fa name="angle-right"></fa>
     </div>
     <div class="profile-info">
