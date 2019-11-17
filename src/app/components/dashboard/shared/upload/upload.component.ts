@@ -7,29 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadComponent implements OnInit {
 
-  public file: File
-  public imageTmp: any
-  public textButton = "Update Photo"
+  public file: File;
+  public imageTmp: any;
+  public textButton = 'Update Photo';
   constructor() { }
   ngOnInit() {
   }
 
   selectImg(file: File) {
-    if(!file) {
+    if (!file) {
       this.file = null;
-      return
+      return;
     }
-    if(file.type.indexOf('image') < 0) {
-      alert("Error")
-      this.file = null
-      return
+    if (file.type.indexOf('image') < 0) {
+      alert('Error');
+      this.file = null;
+      return;
     }
-    this.file = file
-    let reader = new FileReader()
-    let urlImageTemp =  reader.readAsDataURL(file)
+    this.file = file;
+    const reader = new FileReader();
+    const urlImageTemp =  reader.readAsDataURL(file);
     reader.onloadend = () => {
-      this.imageTmp = reader.result
-      console.log(this.imageTmp)
-    }
+      this.imageTmp = reader.result;
+      console.log(this.imageTmp);
+    };
   }
 }
