@@ -4,9 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'image'
 })
 export class ImagePipe implements PipeTransform {
-
-  transform(value: any, ...args: any[]): any {
-    return 'funciona';
+  private baseUrl = 'http://localhost:3001';
+  transform(image: any, ...args: any[]): any {
+    console.log(`${this.baseUrl}${image}`);
+    return `${this.baseUrl}/${image}`;
   }
 
 }
