@@ -25,6 +25,8 @@ export class ProfileComponent implements OnInit {
         if (data ===  null) {
           const response = await this.imageService.register({ userId: this.data.id, image: 'user.png' });
           this.data.image = response.image;
+        } else {
+          this.data.image = data.image;
         }
       })
       .catch(err => console.error(err));
