@@ -25,6 +25,7 @@ import { FormatDatePipe } from './pipes/format-date.pipe';
 import { SliceTextPipe } from './pipes/slice-text.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UploadComponent } from './shared/upload/upload.component';
+import { PipeModule } from '../../pipes/pipe.module';
 
 @NgModule({
   declarations: [
@@ -47,14 +48,15 @@ import { UploadComponent } from './shared/upload/upload.component';
     SliceTextPipe,
     UploadComponent
   ],
-  entryComponents: [FormPersonalComponent, FormSolicitudComponent, DetailSolicitudComponent],
+  entryComponents: [FormPersonalComponent, FormSolicitudComponent, DetailSolicitudComponent, UploadComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     AngularFontAwesomeModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    PipeModule
   ]
 })
 export class DashboardModule { }
