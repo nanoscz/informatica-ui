@@ -12,7 +12,8 @@
       <p>photo</p>
       <p>Agrega una foto para personalizar tu cuenta.</p>
       <div class="info-img">
-        <img class="pointer" [src]="data.image|image" alt="Image Profile">
+        <img *ngIf="data.image" class="pointer" [src]="data.image|image" alt="Image Profile">
+        <img *ngIf="!data.image" class="pointer" [src]="'assets/user.png'" alt="Image Profile">
       </div>
     </div>
     <div class="profile-info">

@@ -5,6 +5,6 @@
   <div class="actions">
     <input class="pointer" (change)="selectImg($event.target.files[0])" type="file" name="sampleFile" id="sampleFile">
     <label for="sampleFile">choase a file</label>
-    <button class="btn-upload" mat-flat-button color="primary">{{textButton}}</button>
+    <a (click)="upload()" class="btn-upload" mat-flat-button color="primary">{{textButton}}</a>
   </div>
 </div>

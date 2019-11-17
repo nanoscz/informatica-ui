@@ -6,7 +6,7 @@ import { handlerErrorPromise } from '../utils/handler-errors';
   providedIn: 'root'
 })
 export class UploadService {
-  public baseUrl = 'http://localhost:3001/';
+  public baseUrl = 'http://localhost:3001';
   constructor(private http: HttpClient) {
   }
 
@@ -16,9 +16,25 @@ export class UploadService {
       .catch(handlerErrorPromise);
   }
 
-  upload(file: File) {
-    return this.http.post(`${this.baseUrl}/upload`, file)
-      .toPromise()
-      .catch(handlerErrorPromise);
+  upload(file: File, userId: any) {
+    return new Promise((resolve, reject) => {
+      const formData = new FormData();
+      const xhr = new XMLHttpRequest();
+
+      formData.append('sampleFile', file);
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            resolve(JSON.parse(xhr.response));
+          } else {
+            reject(JSON.parse(xhr.response));
+          }
+        }
+      };
+      const urlUpload = `${this.baseUrl}/upload`;
+      xhr.open('POST', urlUpload, true);
+      xhr.setRequestHeader('user_id', userId);
+      xhr.send(formData);
+    });
   }
 }

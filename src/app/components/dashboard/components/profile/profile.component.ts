@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { StorageService } from 'src/app/services/storage.service';
 import { UploadComponent } from '../../shared/upload/upload.component';
@@ -21,9 +21,11 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.data = this.storageService.getData('token');
     this.imageService.findOne(this.data.id)
-    .then(data => {
-      this.data.image = data.image;
-      console.log(this.data);
+      .then(async data => {
+        if (data ===  null) {
+          const response = await this.imageService.register({ userId: this.data.id, image: 'user.png' });
+          this.data.image = response.image;
+        }
       })
       .catch(err => console.error(err));
   }
@@ -34,8 +36,9 @@ export class ProfileComponent implements OnInit {
       data: this.data
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe(data => {
+      // this.data.image =
+      console.log('The dialog was closed', data);
     });
   }
 }
