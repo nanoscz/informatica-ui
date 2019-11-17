@@ -1,1 +1,8 @@
-<p>upload works!</p>
+<div class="upload">
+  <img [src]="imageTmp" alt="Image Profile">
+  <div class="actions">
+    <input class="pointer" (change)="selectImg($event.target.files[0])" type="file" name="sampleFile" id="sampleFile">
+    <label for="sampleFile">choase a file</label>
+    <button class="btn-upload" mat-flat-button color="primary">{{textButton}}</button>
+  </div>
+</div>
