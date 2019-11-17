@@ -24,6 +24,7 @@ import { DetailSolicitudComponent } from './shared/detail-solicitud/detail-solic
 import { FormatDatePipe } from './pipes/format-date.pipe';
 import { SliceTextPipe } from './pipes/slice-text.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
+import { UploadComponent } from './shared/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     DetailSolicitudComponent,
     ProfileComponent,
     FormatDatePipe,
-    SliceTextPipe
+    SliceTextPipe,
+    UploadComponent
   ],
   entryComponents: [FormPersonalComponent, FormSolicitudComponent, DetailSolicitudComponent],
   imports: [
