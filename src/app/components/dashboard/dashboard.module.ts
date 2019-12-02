@@ -14,18 +14,15 @@ import { MaterialModule } from './material.module';
 import { FormPersonalComponent } from './shared/form-personal/form-personal.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SearchComponent } from './shared/search/search.component';
-import { ServiciosPipe } from './pipes/servicios.pipe';
+
 import { ListSolicitudComponent } from './shared/list-solicitud/list-solicitud.component';
-import { ZfillPipe } from './pipes/zfill.pipe';
-import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { FormSolicitudComponent } from './shared/form-solicitud/form-solicitud.component';
 import { FormRemitenteComponent } from './shared/form-remitente/form-remitente.component';
 import { DetailSolicitudComponent } from './shared/detail-solicitud/detail-solicitud.component';
-import { FormatDatePipe } from './pipes/format-date.pipe';
-import { SliceTextPipe } from './pipes/slice-text.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UploadComponent } from './shared/upload/upload.component';
-import { PipeModule } from '../../pipes/pipe.module';
+import { DashboardPipesModule } from './pipes/pipes.module';
+import { AppPipesModule } from '../../pipes/pipe.module';
 
 @NgModule({
   declarations: [
@@ -39,13 +36,8 @@ import { PipeModule } from '../../pipes/pipe.module';
     FormRemitenteComponent,
     ExpandDirective,
     SearchComponent,
-    ServiciosPipe,
-    CapitalizePipe,
-    ZfillPipe,
     DetailSolicitudComponent,
     ProfileComponent,
-    FormatDatePipe,
-    SliceTextPipe,
     UploadComponent
   ],
   entryComponents: [FormPersonalComponent, FormSolicitudComponent, DetailSolicitudComponent, UploadComponent],
@@ -56,7 +48,8 @@ import { PipeModule } from '../../pipes/pipe.module';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    PipeModule
+    DashboardPipesModule,
+    AppPipesModule
   ]
 })
 export class DashboardModule { }

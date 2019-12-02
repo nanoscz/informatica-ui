@@ -7,4 +7,4 @@ import { ImagePipe } from './image.pipe';
     ImagePipe
   ]
 })
-export class PipeModule { }
+export class AppPipesModule { }
