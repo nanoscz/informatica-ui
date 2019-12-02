@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { handlerErrorPromise } from '../../../utils/handler-errors';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SolicitudService {
-  private baseUrl = 'http://localhost:3000/v1';
+  private baseUrl = environment.endpoints;
   private range = '0-10';
   public term = '';
   constructor(private http: HttpClient) {

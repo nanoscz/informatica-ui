@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { handlerErrorPromise } from '../../../utils/handler-errors';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AsignarService {
-  public baseUrl = 'http://localhost:3000/v1';
+  private baseUrl = environment.endpoints;
   constructor(private http: HttpClient) {
     this.baseUrl = `${this.baseUrl}/asignar`;
   }
