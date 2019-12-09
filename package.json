@@ -5,7 +5,7 @@
     "ng": "ng",
     "dev": "ng serve",
     "start": "node server.js",
-    "postinstall": "ng build --aot --prod",
+    "postinstall": "ng build --prod",
     "heroku-postbuild": "ng build --prod",
     "build": "ng build --prod",
     "test": "ng test",
