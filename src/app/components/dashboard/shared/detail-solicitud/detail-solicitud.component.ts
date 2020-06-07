@@ -113,7 +113,27 @@ export class DetailSolicitudComponent implements OnInit {
     return personal;
   }
 
-  print() {
+  getBase64ImageFromURL(url: string) {
+    return new Promise((resolve, reject) => {
+      var img = new Image();
+      img.setAttribute("crossOrigin", "anonymous");
+      img.onload = () => {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var dataURL = canvas.toDataURL("image/png");
+        resolve(dataURL);
+      };
+      img.onerror = error => {
+        reject(error);
+      };
+      img.src = url;
+    });
+  }
+
+  async print() {
     const textsg = `Seguimiento a realizar:`;
     const date = new Date();
     const year = date.getFullYear();
@@ -123,27 +143,42 @@ export class DetailSolicitudComponent implements OnInit {
     const docDefinition = {
       content: [
         {
-          style: 'titleSystem',
-          alignment: 'center',
-          text: 'CPS - SISTEMAS'
-        },
-        {
-          style: 'h1',
-          alignment: 'center',
-          bold: true,
-          text: 'CAJA PETROLERA DE SALUD'
-        },
-        {
-          style: 'h2',
-          alignment: 'center',
-          bold: true,
-          text: 'REGIONAL SANTA CRUZ'
-        },
-        {
-          style: 'h3',
-          alignment: 'center',
-          bold: true,
-          text: 'HOJA DE RUTA'
+          columns: [
+            {
+              alignment: 'left',
+              image: await this.getBase64ImageFromURL('/assets/logo.png'),
+              width: 60
+            },
+            {
+              alignment: 'left',
+              style: 'stack',
+              stack: [
+                {
+                  style: 'titleSystem',
+                  alignment: 'center',
+                  text: 'CPS - SISTEMAS'
+                },
+                {
+                  style: 'h1',
+                  alignment: 'center',
+                  bold: true,
+                  text: 'CAJA PETROLERA DE SALUD'
+                },
+                {
+                  style: 'h2',
+                  alignment: 'center',
+                  bold: true,
+                  text: 'REGIONAL SANTA CRUZ'
+                },
+                {
+                  style: 'h3',
+                  alignment: 'center',
+                  bold: true,
+                  text: 'HOJA DE RUTA'
+                },
+              ]
+            }
+          ]
         },
         {
           alignment: 'center',
@@ -216,7 +251,7 @@ export class DetailSolicitudComponent implements OnInit {
           text: `MJCV/ ${year}`
         },
         {
-          style: 'fecha',
+          style: 'date',
           alignment: 'center',
           text: `Santa Cruz, ${formatDate(new Date(), 'literal')}`
         }
@@ -259,8 +294,11 @@ export class DetailSolicitudComponent implements OnInit {
           bold: true,
           margin: [0, 20, 0, 5]
         },
-        fecha: {
+        date: {
           fontSize: 10
+        },
+        stack: {
+          margin: [-60, 0, 0, 0]
         }
       }
     };
