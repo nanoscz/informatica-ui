@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div>
 	<div class="detail-header">
 		<div>
@@ -44,7 +45,7 @@
 						<!-- <mat-label>Asignar a</mat-label> -->
 						<mat-select multiple formControlName="personals">
 							<mat-option *ngFor="let p of personals" [value]="p.id">
-								{{p.nom}} {{p.app}} {{p.apm}}
+								{{p.nom | titlecase}} {{p.app | titlecase}} {{p.apm | titlecase}}
 							</mat-option>
 						</mat-select>
 					</mat-form-field>
